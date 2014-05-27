@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bm</groupId>
+	<artifactId>bookreestr-ear</artifactId>
+	<version>1.0.0</version>
+	<packaging>ear</packaging>
+	
+	<parent>
+      <groupId>org.bm</groupId>
+      <artifactId>bookreestr</artifactId>
+      <version>1.0.0</version>
+	</parent>
+	
+	<dependencies>
+	  <dependency>
+	    <groupId>org.bm</groupId>
+        <artifactId>bookreestr-ejb</artifactId>
+        <version>${project.version}</version>
+        <type>ejb</type>
+	  </dependency>
+	  
+	  <dependency>
+	    <groupId>org.bm</groupId>
+        <artifactId>bookreestr-web</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
+	  </dependency>
+	</dependencies>	
+	
+	<properties>		
+	  <glassfish.home>d:\eclipse\glassfish4\glassfish</glassfish.home>	  
+    </properties>
+	
+	<build>
+	  <plugins>	    
+
+		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-compiler-plugin</artifactId>
+		  <version>3.1</version>
+		  <configuration>
+			<source>${jdk.version}</source>
+			<target>${jdk.version}</target>
+		  </configuration>
+		</plugin>
+	
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-ear-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+            <defaultLibBundleDir>lib</defaultLibBundleDir>            
+            <modules>
+              <ejbModule>
+                <groupId>org.bm</groupId>
+                <artifactId>bookreestr-ejb</artifactId>   
+              </ejbModule>
+              
+              <webModule>
+                <groupId>org.bm</groupId>
+                <artifactId>bookreestr-web</artifactId>
+                <contextRoot>/bookreestr</contextRoot>                                 
+              </webModule>
+            </modules>
+          </configuration>
+        </plugin>
+        
+        <plugin>
+		  <groupId>org.glassfish.maven.plugin</groupId>
+		  <artifactId>maven-glassfish-plugin</artifactId>
+		  <version>2.1</version>
+		  <configuration>
+		    <glassfishDirectory>${glassfish.home}</glassfishDirectory>
+		    <domainDirectory>${glassfish.home}\domains</domainDirectory>
+		    <user>admin</user>
+		    <passwordFile>${glassfish.home}\domains\domain1\config\admin-keyfile</passwordFile>
+		    <domain>
+			  <name>domain1</name>
+			  <httpPort>8080</httpPort>
+			  <adminPort>4848</adminPort>
+		    </domain>
+		    <components>
+			  <component>
+			    <name>${project.artifactId}</name>
+			    <artifact>${project.build.directory}/${project.build.finalName}.ear</artifact>
+			  </component>
+		    </components>	
+		    <debug>true</debug>
+			<terse>false</terse>
+			<echo>true</echo>	  
+		  </configuration>
+	    </plugin>
+		
+	  </plugins>
+	</build>
+	
+	 <pluginRepositories>        
+        <pluginRepository>
+            <id>maven.java.net</id>
+            <name>Java.net Maven2 Repository</name>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>        
+    </pluginRepositories>
+	
+</project>
