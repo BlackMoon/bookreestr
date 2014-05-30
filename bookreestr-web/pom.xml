@@ -42,6 +42,32 @@
 		</dependency>				
 		
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>		
+		
+		<dependency>
 			<groupId>org.bm</groupId>
 			<artifactId>bookreestr-ejb</artifactId>
 			<version>${project.version}</version>
@@ -52,7 +78,8 @@
 	
 	<properties>		
 	  <ifaces.version>3.3.0</ifaces.version>
-	  <glassfish.home>d:\eclipse\glassfish4\glassfish</glassfish.home>	  	  
+	  <glassfish.home>d:\eclipse\glassfish4\glassfish</glassfish.home>	
+	  <spring.version>3.2.4.RELEASE</spring.version>    	  
     </properties>
 	
 	<build>
