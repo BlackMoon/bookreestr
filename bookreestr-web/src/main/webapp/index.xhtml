@@ -7,14 +7,21 @@
     xmlns:icecore="http://www.icefaces.org/icefaces/core"
     xmlns:ace="http://www.icefaces.org/icefaces/components"
     xmlns:ice="http://www.icesoft.com/icefaces/component">
-    <h:head>
+    <h:head>    	
         <title>Реестр</title>
-        <style>
+        <h:outputStylesheet>        
         	.ui-tabset .ui-tabs-panel
 			{
 				padding: 1px 0 0 0;
 			}
-        </style>        
+        </h:outputStylesheet>
+        <h:outputScript>//<![CDATA[
+    		function setHeight(){
+    			var H = window.innerHeight - 26;
+        		$tabs.style.height = H + 'px';
+    		};  	    	
+    		window.addEventListener('resize', setHeight);//]]>
+ 		</h:outputScript>          
     </h:head>
     <h:body>
        <h:form id="form">
@@ -41,25 +48,43 @@
             	</ace:dataTable>
         	</ace:tabPane>
         	<ace:tabPane id="tabBooks" label="Книги">
-        		<ace:dataTable id="gridBooks" value="#{dataTableBean.carsData}" var="car" paginator="true" paginatorPosition="bottom" rows="20">
-        			 <ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="idCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="name" headerText="Название" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="naneCell" value="№{book.name}"/>
-                     </ace:column>
-                     <ace:column id="author" headerText="Автор" sortBy="#{book.author}" filterBy="#{book.author}" filterMatchMode="contains">
-                     	<h:outputText id="authorCell" value="№{book.author}"/>
-                     </ace:column>
-                     <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}" filterMatchMode="contains">
-                     	<h:outputText id="subjectCell" value="№{book.author}"/>
-                     </ace:column>
-                     <ace:column id="year" headerText="Год выпуска" sortBy="#{book.year}" filterBy="#{book.year}" filterMatchMode="contains">
-                     	<h:outputText id="yearCell" value="№{book.author}"/>
-                     </ace:column>
-                     <ace:column id="publish" headerText="Издательство" sortBy="#{book.publish}" filterBy="#{book.publish}" filterMatchMode="contains">
-                     	<h:outputText id="publichCell" value="№{book.publich}"/>
-                     </ace:column>
+        		<ace:pushButton id="addBtn" value="Добавить">	
+        		</ace:pushButton>			                                    
+        		<ace:dataTable id="gridBooks" 
+        				value="#{bookBean.books}" 
+        				var="book" paginator="true"
+        				paginatorPosition="bottom" 
+        				reorderableColumns="true"
+        				rows="20"
+        				selectionMode="single">
+					<ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
+                    	<h:outputText id="idCell" />
+                    </ace:column>
+                    <ace:column id="name" headerText="Название" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
+                     	<ace:cellEditor>
+                        	<f:facet name="output">
+                            	<h:outputText id="nameCell" value="#{book.name}"/>
+                        	</f:facet>
+                        	<f:facet name="input">
+                            	<h:inputText id="nameInput" value="#{book.name}"/>
+                        	</f:facet>
+                    	</ace:cellEditor>                     	
+                    </ace:column>
+                    <ace:column id="author" headerText="Автор" sortBy="#{book.author}" filterBy="#{book.author}" filterMatchMode="contains">
+                     	<h:outputText id="authorCell" value="#{book.author}" />
+                    </ace:column>
+                    <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}" filterMatchMode="contains">
+                     	<h:outputText id="subjectCell" />
+                    </ace:column>
+                    <ace:column id="year" headerText="Год выпуска" sortBy="#{book.year}" filterBy="#{book.year}" filterMatchMode="contains">
+                     	<h:outputText id="yearCell" />
+                    </ace:column>
+                    <ace:column id="publish" headerText="Издательство" sortBy="#{book.publish}" filterBy="#{book.publish}" filterMatchMode="contains">
+                     	<h:outputText id="publichCell" />
+                    </ace:column>
+                    <ace:column id="options">
+                   		<ace:rowEditor id="editor"/>                   		
+               		</ace:column>
               	</ace:dataTable>
         	</ace:tabPane>
         	<ace:tabPane id="tabSubjects" label="Тематики">        	
@@ -92,15 +117,10 @@
               	</ace:dataTable>
         	</ace:tabPane>
         </ace:tabSet>
-       </h:form>
-       
+       </h:form>       
     </h:body>
-    <script type="text/javascript" language="javascript">
-    	function setHeight (){
-    		var H = window.innerHeight - 26;
-        	document.getElementById('form:tabs').style.height = H + 'px';
-    	};
-    	setHeight();    	
-    	window.addEventListener('resize', setHeight);
- 	</script>    
+    <h:outputScript>
+    	var $tabs = document.getElementById('form:tabs');
+    	setHeight();
+ 	</h:outputScript>    
 </html>
