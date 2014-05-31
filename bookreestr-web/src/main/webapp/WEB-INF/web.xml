@@ -3,9 +3,14 @@
   <display-name>bookreestr-web</display-name>
   
   <welcome-file-list>
-    <welcome-file>index.jsf</welcome-file>
-  </welcome-file-list>
-    
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list> 
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/app-context.xml</param-value>
+  </context-param>  
+  
   <context-param>
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
     <param-value>server</param-value>
@@ -29,16 +34,6 @@
   <context-param>
     <param-name>org.icefaces.strictSessionTimeout</param-name>
     <param-value>true</param-value>
-  </context-param>
-  
-  <context-param>
-    <param-name>org.icefaces.ace.gmapKey</param-name>
-    <param-value>AIzaSyAATyWVqT2qNusNGmcVTyQ0QmymkpU-B5o</param-value>
-  </context-param>
-  
-  <context-param>
-    <param-name>com.icesoft.faces.gmapKey</param-name>
-    <param-value>AIzaSyAcAbAa7AL1DLU0785OeWn2byf4XOsm7KM</param-value>
   </context-param>
   
   <context-param>
@@ -69,6 +64,21 @@
     <url-pattern>/icefaces/*</url-pattern>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- security filter --> 
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter> 
+  
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
   
   <mime-mapping>
     <extension>png</extension>

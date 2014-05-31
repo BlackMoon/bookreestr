@@ -9,11 +9,10 @@
     xmlns:ice="http://www.icesoft.com/icefaces/component">
     <h:head>    	
         <title>Реестр</title>
-        <h:outputStylesheet>        
-        	.ui-tabset .ui-tabs-panel
-			{
-				padding: 1px 0 0 0;
-			}
+        <h:outputStylesheet> 
+        	#tabLogoutli4 { float: right; }
+        	.ui-tabset .ui-tabs-panel { padding: 1px 0 0 0; }
+			.ui-widget { font-size: 1em; }
         </h:outputStylesheet>
         <h:outputScript>//<![CDATA[
     		function setHeight(){
@@ -24,11 +23,12 @@
  		</h:outputScript>          
     </h:head>
     <h:body>
-       <h:form id="form">
-        <ace:tabSet id="tabs" clientSide="true">
+       <h:form id="form" prependId="false">
+        <ace:tabSet id="tabs" clientSide="false">
         	<ace:tabPane id="tabReestr" label="Реестр">
         		<ace:dataTable id="gridReestr" 
-        				value="#{dataTableBean.carsData}" var="car" 
+        				value="#{dataTableBean.carsData}" var="car"
+        				
         				paginator="true" 
         				paginatorPosition="bottom"
                     	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -47,15 +47,13 @@
                      </ace:column>
             	</ace:dataTable>
         	</ace:tabPane>
-        	<ace:tabPane id="tabBooks" label="Книги">
-        		<ace:pushButton id="addBtn" value="Добавить">	
-        		</ace:pushButton>			                                    
+        	<ace:tabPane id="tabBooks" label="Книги">        				                                    
         		<ace:dataTable id="gridBooks" 
         				value="#{bookBean.books}" 
         				var="book" paginator="true"
         				paginatorPosition="bottom" 
         				reorderableColumns="true"
-        				rows="20"
+        				rows="1"
         				selectionMode="single">
 					<ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
                     	<h:outputText id="idCell" />
@@ -116,11 +114,13 @@
                      </ace:column>                     
               	</ace:dataTable>
         	</ace:tabPane>
+        	<ace:tabPane id="tabLogout" label="Выход" styleClass="ui-helper-right"/>
         </ace:tabSet>
        </h:form>       
     </h:body>
-    <h:outputScript>
-    	var $tabs = document.getElementById('form:tabs');
-    	setHeight();
+    <h:outputScript>//<![CDATA[
+    	var $tabs = document.getElementById('tabs');
+    		
+    	setHeight();//]]>
  	</h:outputScript>    
 </html>
