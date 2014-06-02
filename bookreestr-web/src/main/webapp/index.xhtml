@@ -10,7 +10,7 @@
     <h:head>    	
         <title>Реестр</title>
         <h:outputStylesheet> 
-        	#tabLogoutli4 { float: right; }
+        	#tabLogoutli5 { float: right; }
         	.ui-tabset .ui-tabs-panel { padding: 1px 0 0 0; }
 			.ui-widget { font-size: 1em; }
         </h:outputStylesheet>
@@ -24,11 +24,9 @@
     </h:head>
     <h:body>
        <h:form id="form" prependId="false">
-        <ace:tabSet id="tabs" clientSide="false">
+        <ace:tabSet id="tabs" clientSide="true" >
         	<ace:tabPane id="tabReestr" label="Реестр">
-        		<ace:dataTable id="gridReestr" 
-        				value="#{dataTableBean.carsData}" var="car"
-        				
+        		<ace:dataTable id="gridReestr"
         				paginator="true" 
         				paginatorPosition="bottom"
                     	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -42,8 +40,8 @@
                      <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
                      	<h:outputText id="startCell" value="#{book.id}"/>
                      </ace:column>
-                     <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="returnCell" value="#{book.id}"/>
+                     <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" >
+                     	<h:outputText id="returnCell" value="#{book.id}" style="width:100px"/>
                      </ace:column>
             	</ace:dataTable>
         	</ace:tabPane>
@@ -53,6 +51,7 @@
         				var="book" paginator="true"
         				paginatorPosition="bottom" 
         				reorderableColumns="true"
+        				resizableColumns="true"
         				rows="1"
         				selectionMode="single">
 					<ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
@@ -114,10 +113,11 @@
                      </ace:column>                     
               	</ace:dataTable>
         	</ace:tabPane>
+        	<ace:tabPane id="tabUsers" label="Пользователи" />
         	<ace:tabPane id="tabLogout" label="Выход" styleClass="ui-helper-right"/>
-        </ace:tabSet>
-       </h:form>       
-    </h:body>
+        </ace:tabSet>	
+	</h:form>
+</h:body>
     <h:outputScript>//<![CDATA[
     	var $tabs = document.getElementById('tabs');
     		
