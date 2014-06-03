@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+	   		http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context
+        	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/security 
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<context:annotation-config/>
+	
+	<sec:authentication-manager alias="authenticationManager">
+	  <sec:authentication-provider user-service-ref="userDetailsService" >	  	
+	    <sec:password-encoder ref="shaPasswordEncoder">	      	
+	      <sec:salt-source user-property="salt"/>
+	    </sec:password-encoder>
+	  </sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	<!-- filter authentication manager -->
+	<sec:authentication-manager id="customAuthenticationManager">
+	  <sec:authentication-provider user-service-ref="userDetailsService" />	  
+	</sec:authentication-manager>
+	
+	<sec:http use-expressions="true">	  	    	   
+	  <sec:form-login login-page="/login" authentication-failure-url="/login?err=true" always-use-default-target="false" password-parameter="passwd" username-parameter="username" />
+	  <sec:intercept-url pattern="/favicon.ico" access="permitAll" />	  	  	   
+	  <sec:logout delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler"/>	  	 
+	  <sec:remember-me key="DoclibKey" services-ref="shaRememberMeServices" />	  
+	</sec:http>	
+	
+	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
+      <property name="useReferer" value="true" />
+	</bean>
+	
+	<bean id="shaPasswordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" >
+	  <constructor-arg value="256"/>	  
+	</bean>
+	
+	<bean id="shaRememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">	
+  	  <constructor-arg name="userDetailsService" ref="userDetailsService" />
+  	  <constructor-arg name="key" value="DoclibKey" />  		
+  	  <property name="cookieName" value="DLAUTH" />
+  	  <property name="parameter" value="rememberme" />
+  	  <!-- 1 month -->
+  	  <property name="tokenValiditySeconds" value="2592000" />
+	</bean>
+	
+	<bean id="userDetailsService" class="org.bm.security.PersonDetailsServiceImpl" />
+							
+</beans>

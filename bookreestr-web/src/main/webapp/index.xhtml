@@ -3,30 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:h="http://java.sun.com/jsf/html"    
     xmlns:icecore="http://www.icefaces.org/icefaces/core"
     xmlns:ace="http://www.icefaces.org/icefaces/components"
     xmlns:ice="http://www.icesoft.com/icefaces/component">
     <h:head>    	
         <title>Реестр</title>
-        <h:outputStylesheet> 
-        	#tabLogoutli5 { float: right; }
+        <h:outputStylesheet>
+        	.ui-info { cursor: default !important; float: right !important; font-size: 0.7em; padding-top: 0.5em !important; }
         	.ui-tabset .ui-tabs-panel { padding: 1px 0 0 0; }
 			.ui-widget { font-size: 1em; }
         </h:outputStylesheet>
         <h:outputScript>//<![CDATA[
+    		function prepare(){
+    			var arr = $tabs.getElementsByTagName('li'),    				
+    				$info = document.createElement('li'),
+    				$logout = arr[arr.length - 1];
+    			
+    			$info.className = 'ui-info';
+    			$info.innerHTML = '<div><em>#{tabEvents.userInfo}</em></div>';
+    			$tabs.firstChild.insertBefore($info, $logout.nextSibling);
+    			
+    			$logout.style.float = 'right' ;	
+    		};  	    
     		function setHeight(){
     			var H = window.innerHeight - 26;
         		$tabs.style.height = H + 'px';
-    		};  	    	
+    		};
     		window.addEventListener('resize', setHeight);//]]>
  		</h:outputScript>          
     </h:head>
     <h:body>
        <h:form id="form" prependId="false">
-        <ace:tabSet id="tabs" clientSide="true" >
+        <ace:tabSet id="tabs" clientSide="false" tabChangeListener="#{tabEvents.tabChangeListener}" >
         	<ace:tabPane id="tabReestr" label="Реестр">
-        		<ace:dataTable id="gridReestr"
+				<ace:dataTable id="gridReestr"
         				paginator="true" 
         				paginatorPosition="bottom"
                     	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -40,12 +51,12 @@
                      <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
                      	<h:outputText id="startCell" value="#{book.id}"/>
                      </ace:column>
-                     <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" >
-                     	<h:outputText id="returnCell" value="#{book.id}" style="width:100px"/>
+                     <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains" >
+                     	<h:outputText id="returnCell" value="#{book.id}"/>
                      </ace:column>
-            	</ace:dataTable>
+            	</ace:dataTable>            	
         	</ace:tabPane>
-        	<ace:tabPane id="tabBooks" label="Книги">        				                                    
+        	<ace:tabPane id="tabBooks" label="Книги">
         		<ace:dataTable id="gridBooks" 
         				value="#{bookBean.books}" 
         				var="book" paginator="true"
@@ -79,10 +90,10 @@
                     <ace:column id="publish" headerText="Издательство" sortBy="#{book.publish}" filterBy="#{book.publish}" filterMatchMode="contains">
                      	<h:outputText id="publichCell" />
                     </ace:column>
-                    <ace:column id="options">
+                    <ace:column id="options" rendered="#{request.userPrincipal != null}">
                    		<ace:rowEditor id="editor"/>                   		
                		</ace:column>
-              	</ace:dataTable>
+              	</ace:dataTable>              
         	</ace:tabPane>
         	<ace:tabPane id="tabSubjects" label="Тематики">        	
         		<ace:dataTable id="gridSubjects" value="#{dataTableBean.carsData}" var="car" paginator="true" paginatorPosition="bottom" rows="20">
@@ -113,14 +124,14 @@
                      </ace:column>                     
               	</ace:dataTable>
         	</ace:tabPane>
-        	<ace:tabPane id="tabUsers" label="Пользователи" />
-        	<ace:tabPane id="tabLogout" label="Выход" styleClass="ui-helper-right"/>
+        	<ace:tabPane id="tabUsers" label="Пользователи" rendered="#{request.isUserInRole('ROLE_ADMIN')}"/>
+        	<ace:tabPane id="tabLogout" label="#{tabEvents.logoutLabel}"/>
         </ace:tabSet>	
-	</h:form>
+	</h:form>	
 </h:body>
     <h:outputScript>//<![CDATA[
     	var $tabs = document.getElementById('tabs');
-    		
+    	prepare();
     	setHeight();//]]>
  	</h:outputScript>    
 </html>
