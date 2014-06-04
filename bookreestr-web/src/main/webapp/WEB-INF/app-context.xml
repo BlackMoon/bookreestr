@@ -28,7 +28,7 @@
 	
 	<sec:http use-expressions="true">	  	    	   
 	  <sec:form-login login-page="/login" authentication-failure-url="/login?err=true" always-use-default-target="false" password-parameter="passwd" username-parameter="username" />
-	  <sec:intercept-url pattern="/favicon.ico" access="permitAll" />
+	  <sec:intercept-url pattern="/favicon.ico" access="permitAll" />	  
 	  <sec:intercept-url pattern="WEB-INF/templates/**" access="permitAll" />	  	  	   
 	  <sec:logout delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler"/>	  	 
 	  <sec:remember-me key="DoclibKey" services-ref="shaRememberMeServices" />	  

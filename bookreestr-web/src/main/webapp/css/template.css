@@ -1,0 +1,30 @@
+.ui-datatable-odd {
+	background-color: lightgray !important;
+}
+
+body {
+  font-family: Helvetica, Arial, Verdana; padding: 0; margin: 0;
+}
+
+.menuBar {
+	font-size: 11px; 
+	background: #093855;
+}
+
+.menuBar ul {
+	float: right;
+}
+
+.menuBarItem {
+	color: #FFFFFF;
+}
+
+.menuBarItem:hover {
+	color: #000000;
+}
+
+.contentBody {
+  float: left; 
+  min-height: 400px; 
+  padding: 20px;
+}

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"	
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+	<ace:dataTable id="gridReestr"
+       				paginator="true" 
+       				paginatorPosition="bottom"
+                   	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   	rowsPerPageTemplate="5,10,15,all">
+		<ace:column id="book" headerText="Книга"  filterMatchMode="contains">
+        	<h:outputText id="bookCell" />
+        </ace:column>
+        <ace:column id="reader" headerText="Текущий читатель"  filterMatchMode="contains">
+          	<h:outputText id="readerCell" />
+        </ace:column>
+        <ace:column id="startdate" headerText="Дата выдачи"  filterMatchMode="contains">
+          	<h:outputText id="startCell" />
+        </ace:column>
+        <ace:column id="returndate" headerText="Дата возврата"  filterMatchMode="contains" >
+           	<h:outputText id="returnCell"/>
+        </ace:column>
+  	</ace:dataTable>          
+</ui:composition>
