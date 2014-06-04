@@ -3,22 +3,34 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"	
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
+	
+	<h:panelGrid columns="2">
+		<ace:pushButton value="Добавить" />
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{reestrBean.rowIx != -1 ? '' : 'ui-state-disabled'}" />
+	</h:panelGrid> 
+	
 	<ace:dataTable id="gridReestr"
-       				paginator="true" 
-       				paginatorPosition="bottom"
-                   	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                   	rowsPerPageTemplate="5,10,15,all">
-		<ace:column id="book" headerText="Книга"  filterMatchMode="contains">
-        	<h:outputText id="bookCell" />
-        </ace:column>
-        <ace:column id="reader" headerText="Текущий читатель"  filterMatchMode="contains">
-          	<h:outputText id="readerCell" />
-        </ace:column>
-        <ace:column id="startdate" headerText="Дата выдачи"  filterMatchMode="contains">
-          	<h:outputText id="startCell" />
-        </ace:column>
-        <ace:column id="returndate" headerText="Дата возврата"  filterMatchMode="contains" >
-           	<h:outputText id="returnCell"/>
-        </ace:column>
-  	</ace:dataTable>          
+				value="#{reestrBean.items}" 
+        		var="reestr"
+        		paginator="true" 
+        		paginatorPosition="bottom"                
+                rows="10"                                 
+                rowSelectListener="#{reestrBean.selectListener}"
+                selectionMode="single">
+        	<ace:column id="book" headerText="Книга" sortBy="#{book.id}" filterBy="#{reestr.id}" filterMatchMode="contains">
+               	<h:outputText id="bookCell" value="#{reestr.id}"/>
+            </ace:column>
+            <ace:column id="reader" headerText="Текущий читатель" sortBy="#{reestr.id}" filterBy="#{book.id}" filterMatchMode="contains">
+               	<h:outputText id="readerCell" value="#{book.id}"/>
+            </ace:column>
+            <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
+              	<h:outputText id="startCell" value="#{book.id}"/>
+            </ace:column>
+            <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains" >
+              	<h:outputText id="returnCell" value="#{book.id}" />
+            </ace:column>
+    		<ace:column id="options" rendered="#{request.userPrincipal != null}">
+            	<ace:rowEditor id="editor"/>                   		
+            </ace:column>
+    </ace:dataTable>
 </ui:composition>

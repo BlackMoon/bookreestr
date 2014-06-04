@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.ui.model;
+package org.bm.ui.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,37 +12,25 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.bm.model.Book;
+
 /**
  * @author Black Moon
  *
  */
 @ManagedBean
 @SessionScoped 
-public class BookBean implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class BookBean extends DataBean<Book> implements Serializable {
 	
-	private List<Book> books;
+	private static final long serialVersionUID = 1L;
 	
 	@PostConstruct
     public void init() {
-        books = new ArrayList<Book>();
-        books.add(new Book());
+        items = new ArrayList<Book>();
+        items.add(new Book());
         
         Book b = new Book();
         b.setName("1");
-        books.add(b);
+        items.add(b);
     }
-	
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
 }
