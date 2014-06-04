@@ -26,6 +26,6 @@
     <module>bookreestr-ejb</module>
     <module>bookreestr-web</module>
     <module>bookreestr-ear</module>
-  </modules>
-  
+  </modules>	
+	 
 </project>

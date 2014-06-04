@@ -1,137 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"    
-    xmlns:icecore="http://www.icefaces.org/icefaces/core"
-    xmlns:ace="http://www.icefaces.org/icefaces/components"
-    xmlns:ice="http://www.icesoft.com/icefaces/component">
-    <h:head>    	
-        <title>Реестр</title>
-        <h:outputStylesheet>
-        	.ui-info { cursor: default !important; float: right !important; font-size: 0.7em; padding-top: 0.5em !important; }
-        	.ui-tabset .ui-tabs-panel { padding: 1px 0 0 0; }
-			.ui-widget { font-size: 1em; }
-        </h:outputStylesheet>
-        <h:outputScript>//<![CDATA[
-    		function prepare(){
-    			var arr = $tabs.getElementsByTagName('li'),    				
-    				$info = document.createElement('li'),
-    				$logout = arr[arr.length - 1];
-    			
-    			$info.className = 'ui-info';
-    			$info.innerHTML = '<div><em>#{tabEvents.userInfo}</em></div>';
-    			$tabs.firstChild.insertBefore($info, $logout.nextSibling);
-    			
-    			$logout.style.float = 'right' ;	
-    		};  	    
-    		function setHeight(){
-    			var H = window.innerHeight - 26;
-        		$tabs.style.height = H + 'px';
-    		};
-    		window.addEventListener('resize', setHeight);//]]>
- 		</h:outputScript>          
-    </h:head>
-    <h:body>
-       <h:form id="form" prependId="false">
-        <ace:tabSet id="tabs" clientSide="false" tabChangeListener="#{tabEvents.tabChangeListener}" >
-        	<ace:tabPane id="tabReestr" label="Реестр">
-				<ace:dataTable id="gridReestr"
-        				paginator="true" 
-        				paginatorPosition="bottom"
-                    	paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    	rowsPerPageTemplate="5,10,15,all">
-        			 <ace:column id="book" headerText="Книга" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="bookCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="reader" headerText="Текущий читатель" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="readerCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="startCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains" >
-                     	<h:outputText id="returnCell" value="#{book.id}"/>
-                     </ace:column>
-            	</ace:dataTable>            	
-        	</ace:tabPane>
-        	<ace:tabPane id="tabBooks" label="Книги">
-        		<ace:dataTable id="gridBooks" 
-        				value="#{bookBean.books}" 
-        				var="book" paginator="true"
-        				paginatorPosition="bottom" 
-        				reorderableColumns="true"
-        				resizableColumns="true"
-        				rows="1"
-        				selectionMode="single">
-					<ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                    	<h:outputText id="idCell" />
-                    </ace:column>
-                    <ace:column id="name" headerText="Название" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<ace:cellEditor>
-                        	<f:facet name="output">
-                            	<h:outputText id="nameCell" value="#{book.name}"/>
-                        	</f:facet>
-                        	<f:facet name="input">
-                            	<h:inputText id="nameInput" value="#{book.name}"/>
-                        	</f:facet>
-                    	</ace:cellEditor>                     	
-                    </ace:column>
-                    <ace:column id="author" headerText="Автор" sortBy="#{book.author}" filterBy="#{book.author}" filterMatchMode="contains">
-                     	<h:outputText id="authorCell" value="#{book.author}" />
-                    </ace:column>
-                    <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}" filterMatchMode="contains">
-                     	<h:outputText id="subjectCell" />
-                    </ace:column>
-                    <ace:column id="year" headerText="Год выпуска" sortBy="#{book.year}" filterBy="#{book.year}" filterMatchMode="contains">
-                     	<h:outputText id="yearCell" />
-                    </ace:column>
-                    <ace:column id="publish" headerText="Издательство" sortBy="#{book.publish}" filterBy="#{book.publish}" filterMatchMode="contains">
-                     	<h:outputText id="publichCell" />
-                    </ace:column>
-                    <ace:column id="options" rendered="#{request.userPrincipal != null}">
-                   		<ace:rowEditor id="editor"/>                   		
-               		</ace:column>
-              	</ace:dataTable>              
-        	</ace:tabPane>
-        	<ace:tabPane id="tabSubjects" label="Тематики">        	
-        		<ace:dataTable id="gridSubjects" value="#{dataTableBean.carsData}" var="car" paginator="true" paginatorPosition="bottom" rows="20">
-        			 <ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="idCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="name" headerText="Название" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="naneCell" value="№{book.name}"/>
-                     </ace:column>                     
-              	</ace:dataTable>
-        	</ace:tabPane>
-        	<ace:tabPane id="tabReaders" label="Читатели">
-        		<ace:dataTable id="gridReaders" value="#{dataTableBean.carsData}" var="car" paginator="true" paginatorPosition="bottom" rows="20">
-        			 <ace:column id="id" headerText="ID" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-                     	<h:outputText id="idCell" value="#{book.id}"/>
-                     </ace:column>
-                     <ace:column id="lastname" headerText="Фамилия" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="lastnameCell" value="№{book.name}"/>
-                     </ace:column>
-                     <ace:column id="firstname" headerText="Имя" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="firstnameCell" value="№{book.name}"/>
-                     </ace:column>
-                     <ace:column id="middlename" headerText="Отчество" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="middlenameCell" value="№{book.name}"/>
-                     </ace:column>
-                     <ace:column id="birthday" headerText="Дата рождения" sortBy="#{book.name}" filterBy="#{book.name}" filterMatchMode="contains">
-                     	<h:outputText id="birthdayCell" value="№{book.name}"/>
-                     </ace:column>                     
-              	</ace:dataTable>
-        	</ace:tabPane>
-        	<ace:tabPane id="tabUsers" label="Пользователи" rendered="#{request.isUserInRole('ROLE_ADMIN')}"/>
-        	<ace:tabPane id="tabLogout" label="#{tabEvents.logoutLabel}"/>
-        </ace:tabSet>	
-	</h:form>	
-</h:body>
-    <h:outputScript>//<![CDATA[
-    	var $tabs = document.getElementById('tabs');
-    	prepare();
-    	setHeight();//]]>
- 	</h:outputScript>    
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	template="/WEB-INF/templates/template.xhtml">
+	<ui:param name="title" value="Реестр" />
+	<ui:define name="tabItems">
+		<ace:tabPane label="Реестр">
+			<ui:include src="WEB-INF/templates/tabReestr.xhtml" />
+		</ace:tabPane>
+		<ace:tabPane label="Книги">
+			
+		</ace:tabPane>
+		<ace:tabPane label="Тематики">
+			
+		</ace:tabPane>
+		<ace:tabPane label="Абоненты">
+			
+		</ace:tabPane>
+		<ace:tabPane label="Читатели">
+			
+		</ace:tabPane>
+	</ui:define>
+</ui:composition>
