@@ -11,7 +11,8 @@ import java.util.List;
  */
 public abstract class DataBean<T> {
 	protected List<T> items;
-
+	
+	
 	public List<T> getItems() {
 		return items;
 	}

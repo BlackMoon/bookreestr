@@ -6,35 +6,38 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	
-	<h:panelGrid columns="2">
-		<ace:pushButton value="Добавить" />
-		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{reestrBean.rowIx != -1 ? '' : 'ui-state-disabled'}" />
-	</h:panelGrid> 
+	<ace:confirmationDialog id="confirmDialog"
+                             widgetVar="confirmation"
+                             message="Удалить запись?"
+                             header="Внимание"
+                             width="360"
+                             height="180"
+                             closable="true"
+                             position="center">
+         <h:panelGrid columns="2" styleClass="centeredPanelGrid">
+             <h:commandButton id="yes" value="Да" onclick="confirmation.hide()" actionListener="#{personBean.delete}"/>
+             <h:commandButton id="no" value="Нет" onclick="confirmation.hide()" />
+         </h:panelGrid>
+     </ace:confirmationDialog>
 	
-	<ace:dataTable id="gridPersons" value="#{personBean.items}" var="person" paginator="true" paginatorPosition="bottom" rows="20">
+	<h:panelGrid columns="2">
+		<ace:pushButton value="Добавить" actionListener="#{personBean.add}"/>
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{personBean.selected > 0 ? '' : 'ui-state-disabled'}" onclick="confirmation.show()" />		
+	</h:panelGrid>
+	
+	<ace:dataTable id="gridPersons" value="#{personBean.items}" 
+					var="person"					 
+					paginator="true" 
+					paginatorPosition="bottom"
+					reorderableColumns="true" 
+					rowIndexVar="rowIx"
+					rows="20"		
+					stateMap="#{personBean.stateMap}"	
+					selectionMode="single"
+					rowSelectListener="#{personBean.select}">
  			 <ace:column id="id" headerText="ID" sortBy="#{person.id}" filterBy="#{person.id}" filterMatchMode="exact">
               	<h:outputText id="idCell" value="#{person.id}"/>
-              </ace:column>
-              <ace:column id="login" headerText="Логин" sortBy="#{person.login}" filterBy="#{person.login}" filterMatchMode="contains">
-              	<ace:cellEditor>
-                  	<f:facet name="output">
-                      	<h:outputText id="loginCell" value="#{person.login}"/>
-                   	</f:facet>
-                   	<f:facet name="input">
-                       	<h:inputText id="loginInput" value="#{person.login}"/>
-                   	</f:facet>
-                </ace:cellEditor>
-              </ace:column>
-              <ace:column id="password" headerText="Пароль" sortBy="#{person.password}" filterBy="#{person.password}" filterMatchMode="contains">
-              	<ace:cellEditor>
-                  	<f:facet name="output">
-                      	<h:outputText id="passwordCell" value="***"/>
-                   	</f:facet>
-                   	<f:facet name="input">
-                       	<h:inputSecret id="passwordInput" value="#{person.password}"/>
-                   	</f:facet>
-                </ace:cellEditor>              	
-              </ace:column>
+              </ace:column>                 
               <ace:column id="lastname" headerText="Фамилия" sortBy="#{person.lastname}" filterBy="#{person.lastname}" filterMatchMode="contains">
               	<ace:cellEditor>
                   	<f:facet name="output">
@@ -65,6 +68,26 @@
                    	</f:facet>
                 </ace:cellEditor>
               </ace:column>
+              <ace:column id="login" headerText="Логин" sortBy="#{person.login}" filterBy="#{person.login}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="loginCell" value="#{person.login}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="loginInput" value="#{person.login}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>           
+              <ace:column id="password" headerText="Пароль">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="passwordCell" value="***"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputSecret id="passwordInput" value="#{person.password}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
               <ace:column id="isadmin" headerText="Администратор" sortBy="#{person.isAdmin}">
               	<ace:cellEditor>
                   	<f:facet name="output">
@@ -76,7 +99,12 @@
                 </ace:cellEditor>
               </ace:column>
               <ace:column id="misc">
-              	<ace:rowEditor id="editor"/>                   		
+              	<ace:rowEditor id="editor" 
+              		rowEditListener="#{personBean.edit}" 
+              		rowEditCancelListener="#{personBean.editCancel}" 
+              		cancelTitle="Отмена" 
+              		startTitle="Редактировать" 
+              		submitTitle="Сохранить"/>                   		
               </ace:column>                             
        	</ace:dataTable>
 
