@@ -11,16 +11,16 @@
 			<ui:include src="WEB-INF/templates/tabReestr.xhtml" />
 		</ace:tabPane>
 		<ace:tabPane label="Книги">
-			<ui:include src="WEB-INF/templates/tabBooks.xhtml" />
+			
 		</ace:tabPane>
 		<ace:tabPane label="Тематики">
-			<ui:include src="WEB-INF/templates/tabSubjects.xhtml" />
+			
 		</ace:tabPane>
 		<ace:tabPane label="Читатели">
-			<ui:include src="WEB-INF/templates/tabReaders.xhtml" />
-		</ace:tabPane>
-		<ace:tabPane label="Пользователи" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 			
+		</ace:tabPane>
+		<ace:tabPane label="Пользователи" >
+			<ui:include src="WEB-INF/templates/tabPersons.xhtml" />
 		</ace:tabPane>
 	</ui:define>
 </ui:composition>

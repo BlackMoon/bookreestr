@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"	
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+	
+	<h:panelGrid columns="2">
+		<ace:pushButton value="Добавить" />
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{reestrBean.rowIx != -1 ? '' : 'ui-state-disabled'}" />
+	</h:panelGrid> 
+	
+	<ace:dataTable id="gridPersons" value="#{personBean.items}" var="person" paginator="true" paginatorPosition="bottom" rows="20">
+ 			 <ace:column id="id" headerText="ID" sortBy="#{person.id}" filterBy="#{person.id}" filterMatchMode="exact">
+              	<h:outputText id="idCell" value="#{person.id}"/>
+              </ace:column>
+              <ace:column id="login" headerText="Логин" sortBy="#{person.login}" filterBy="#{person.login}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="loginCell" value="#{person.login}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="loginInput" value="#{person.login}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>
+              <ace:column id="password" headerText="Пароль" sortBy="#{person.password}" filterBy="#{person.password}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="passwordCell" value="***"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputSecret id="passwordInput" value="#{person.password}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="lastname" headerText="Фамилия" sortBy="#{person.lastname}" filterBy="#{person.lastname}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="lastnameCell" value="#{person.lastname}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="lastnameInput" value="#{person.lastname}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="firstname" headerText="Имя" sortBy="#{person.firstname}" filterBy="#{person.firstname}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="firstnameCell" value="#{person.firstname}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="firslnameInput" value="#{person.firstname}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="middlename" headerText="Отчество" sortBy="#{person.middlename}" filterBy="#{person.middlename}" filterMatchMode="contains">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="middlenameCell" value="#{person.middlename}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="midllenameInput" value="#{person.middlename}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>
+              <ace:column id="isadmin" headerText="Администратор" sortBy="#{person.isAdmin}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:panelGroup rendered="false" styleClass="#{person.isAdmin ? 'ui-icon ui-icon-check' : ''}"/>                      	                      	                      	
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:selectBooleanCheckbox id="isadminInput" value="#{person.isAdmin}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>
+              <ace:column id="misc">
+              	<ace:rowEditor id="editor"/>                   		
+              </ace:column>                             
+       	</ace:dataTable>
+
+</ui:composition>
