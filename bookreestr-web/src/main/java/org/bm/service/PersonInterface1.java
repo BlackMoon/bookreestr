@@ -15,7 +15,7 @@ import org.bm.model.Person;
  *
  */
 public interface PersonInterface1 {
-	 Person add(Person p);
+	 int add(Person p);
 	 Person get(int id);
 	 List<Person> getAll();
 	 void delete(int id);	        

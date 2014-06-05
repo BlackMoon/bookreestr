@@ -21,20 +21,21 @@
      </ace:confirmationDialog>
 	
 	<h:panelGrid columns="2">
-		<ace:pushButton value="Добавить" actionListener="#{personBean.add}"/>
-		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{personBean.selected > 0 ? '' : 'ui-state-disabled'}" onclick="confirmation.show()" />		
+		<ace:pushButton value="Добавить" actionListener="#{personBean.add}"/>		
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton ui-state-disabled" rendered="#{!personBean.isSelected}"/>
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton" rendered="#{personBean.isSelected}" onclick="confirmation.show()"/>		
 	</h:panelGrid>
 	
 	<ace:dataTable id="gridPersons" value="#{personBean.items}" 
 					var="person"					 
 					paginator="true" 
 					paginatorPosition="bottom"
-					reorderableColumns="true" 
-					rowIndexVar="rowIx"
-					rows="20"		
+					reorderableColumns="true"
+					rows="20"
 					stateMap="#{personBean.stateMap}"	
 					selectionMode="single"
-					rowSelectListener="#{personBean.select}">
+					rowSelectListener="#{personBean.select}"
+					rowUnSelectListener="#{personBean.unselect}">
  			 <ace:column id="id" headerText="ID" sortBy="#{person.id}" filterBy="#{person.id}" filterMatchMode="exact">
               	<h:outputText id="idCell" value="#{person.id}"/>
               </ace:column>                 
@@ -100,8 +101,7 @@
               </ace:column>
               <ace:column id="misc">
               	<ace:rowEditor id="editor" 
-              		rowEditListener="#{personBean.edit}" 
-              		rowEditCancelListener="#{personBean.editCancel}" 
+              		rowEditListener="#{personBean.edit}"               		
               		cancelTitle="Отмена" 
               		startTitle="Редактировать" 
               		submitTitle="Сохранить"/>                   		

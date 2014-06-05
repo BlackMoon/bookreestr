@@ -2,11 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	xmlns:h="http://java.sun.com/jsf/html"		
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
-
-<c:set var="logged" value="request.userPrincipal != null" />
 
 <h:head>
 	<title>#{title}</title>
@@ -15,11 +12,11 @@
 <h:body>	
 	<div class="topMenu">
 		<h:form id="form">			
-			<h:panelGroup layout="block" style="float:left; padding: 10px">Пользователь#{request.userPrincipal.name}</h:panelGroup>
+			<h:panelGroup layout="block" style="float:left; padding: 10px">#{request.userPrincipal.name}</h:panelGroup>
 			<h:panelGroup layout="block" style="float:right">
 				<ace:menuBar styleClass="menuBar">				
-					<ace:menuItem value="Вход" url="/login" styleClass="menuBarItem" rendered="#{!logged}"/>
-					<ace:menuItem value="Выход" url="#" styleClass="menuBarItem" rendered="#{logged}"/>	
+					<ace:menuItem value="Вход" url="/login" styleClass="menuBarItem" rendered="#{request.userPrincipal == null}"/>
+					<ace:menuItem value="Выход" url="/j_spring_security_logout" styleClass="menuBarItem" rendered="#{request.userPrincipal != null}"/>	
 				</ace:menuBar>
 			</h:panelGroup>
 		</h:form>

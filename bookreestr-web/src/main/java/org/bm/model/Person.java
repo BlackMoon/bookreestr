@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 @NamedQuery(name = "Person.getAll", query = "SELECT p from Person p")
-public class Person {
+public class Person implements Key {
 	private int id;
 	
 	private boolean isAdmin;

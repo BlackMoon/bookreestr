@@ -14,12 +14,12 @@
 			
 		</ace:tabPane>
 		<ace:tabPane label="Тематики">
-			
+			<ui:include src="WEB-INF/templates/tabSubjects.xhtml" />
 		</ace:tabPane>
 		<ace:tabPane label="Читатели">
 			
 		</ace:tabPane>
-		<ace:tabPane label="Пользователи" >
+		<ace:tabPane label="Пользователи" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 			<ui:include src="WEB-INF/templates/tabPersons.xhtml" />
 		</ace:tabPane>
 	</ui:define>

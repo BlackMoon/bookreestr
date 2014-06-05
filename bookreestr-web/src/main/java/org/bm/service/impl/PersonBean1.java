@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.bm.model.Person;
 import org.bm.service.PersonInterface1;
 
@@ -18,54 +20,55 @@ import org.bm.service.PersonInterface1;
  * @author Black Moon
  *
  */
-public class PersonBean1 implements PersonInterface1 {
-	
-	EntityManager em = Persistence.createEntityManagerFactory("DS").createEntityManager();	
+public class PersonBean1 extends DBBean<Person> implements PersonInterface1 {
 	
 	@Override
+	public int add(Person p) {        
+		
+		String passwd = p.getPassword(), salt = null;
+		
+		if (passwd != null && passwd.length() > 0) {
+			salt = RandomStringUtils.random(16, "abcdef0123456789");
+			passwd = DigestUtils.sha256Hex(passwd + "{" + salt + "}");
+		}
+		p.setPassword(passwd);
+		p.setSalt(salt);
+		
+        return super.add(p);
+	}	
+
 	public List<Person> getAll() {        
 		TypedQuery<Person> namedQuery = em.createNamedQuery("Person.getAll", Person.class);
         return namedQuery.getResultList();
-	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service.PersonInterface1#add(org.bm.model.Person)
-	 */
-	@Override
-	public Person add(Person p) {
-		em.getTransaction().begin();
-        Person newItem = em.merge(p);
-        em.getTransaction().commit();
-        return newItem;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service.PersonInterface1#get(int)
-	 */
-	@Override
+	}	
+	
 	public Person get(int id) {
 		return em.find(Person.class, id);
 	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service.PersonInterface1#delete(int)
-	 */
-	@Override
-	public void delete(int id) {
-		em.getTransaction().begin();
-        em.remove(get(id));
-        em.getTransaction().commit();
+	
+	public Person get(String login) {		
+		return (Person)em.createQuery("SELECT p FROM Person p WHERE p.login = ?").setParameter(1, login).getSingleResult();
 	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service.PersonInterface1#update(org.bm.model.Person)
-	 */
+	
+	public int getNewId(){
+		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person p").getSingleResult();		
+	}		
+	
+	public void delete(int id) {
+		super.delete(get(id));		
+	}
+	
 	@Override
 	public void update(Person p) {
+		String passwd = p.getPassword(), salt = null;
 		
+		if (passwd != null && passwd.length() > 0) {
+			salt = RandomStringUtils.random(16, "abcdef0123456789");
+			passwd = DigestUtils.sha256Hex(passwd + "{" + salt + "}");
+		}
+		p.setPassword(passwd);
+		p.setSalt(salt);
 		
-		em.getTransaction().begin();
-        em.merge(p);
-        em.getTransaction().commit();
-	}		
+		super.update(p);;
+	}
 }

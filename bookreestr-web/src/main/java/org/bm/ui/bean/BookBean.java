@@ -11,8 +11,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.bm.model.Book;
+import org.icefaces.ace.event.RowEditCancelEvent;
+import org.icefaces.ace.event.RowEditEvent;
 
 /**
  * @author Black Moon
@@ -20,7 +23,7 @@ import org.bm.model.Book;
  */
 @ManagedBean
 @SessionScoped 
-public class BookBean extends DataBean<Book> implements Serializable {
+public class BookBean extends GridBean<Book> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -33,4 +36,31 @@ public class BookBean extends DataBean<Book> implements Serializable {
         b.setName("1");
         items.add(b);
     }
-}
+
+	/* (non-Javadoc)
+	 * @see org.bm.ui.bean.GridBean#add()
+	 */
+	@Override
+	public void add() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.bm.ui.bean.GridBean#delete(javax.faces.event.ActionEvent)
+	 */
+	@Override
+	public void delete(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.bm.ui.bean.GridBean#edit(org.icefaces.ace.event.RowEditEvent)
+	 */
+	@Override
+	public void edit(RowEditEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	}

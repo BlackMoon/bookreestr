@@ -19,7 +19,6 @@ import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
 import org.icefaces.ace.model.table.RowState;
-import org.icefaces.ace.model.table.RowStateMap;
 
 /**
  * @author Black Moon
@@ -27,13 +26,10 @@ import org.icefaces.ace.model.table.RowStateMap;
  */
 @ManagedBean
 @SessionScoped 
-public class PersonBean extends DataBean<Person> implements Serializable {
+public class PersonBean extends GridBean<Person> implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	 
 	
-	private boolean isNew = false;
-	private RowStateMap stateMap = new RowStateMap();
-
 	PersonBean1 pb = new PersonBean1();
 	
 	@PostConstruct
@@ -41,8 +37,11 @@ public class PersonBean extends DataBean<Person> implements Serializable {
         items = pb.getAll();
     }
 	
+	@Override
 	public void add(){
-		Person item = new Person(); 
+		
+		Person item = new Person();
+		item.setId(pb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent("form2:gridPersons"); 
@@ -60,36 +59,32 @@ public class PersonBean extends DataBean<Person> implements Serializable {
 		isNew = true;
 	}
 	
+	@Override
 	public void edit(RowEditEvent e){
-		Person item = new Person();
-	}
-	
-	public void editCancel(RowEditEvent e){
-		if (isNew)
-		{
-			
-		}
-	}
-	
-	public void delete(ActionEvent e) {
-		List<?> selected = stateMap.getSelected();
-		for (Object o : selected)
-		{
-			items.remove(o);
-		}
-		selected.clear();
-	}
-	
-	
-	public select() {
+		Person p = (Person)e.getObject();
 		
-	}
-	
-	public RowStateMap getStateMap() {
-		return stateMap;
+		if (isNew) {			
+			pb.add(p);
+			isNew = false;
+		}
+		else
+			pb.update(p);		
 	}
 
-	public void setStateMap(RowStateMap stateMap) {
-		this.stateMap = stateMap;
+	@Override
+	public void delete(ActionEvent e) {
+		
+		for (Object o : stateMap.getSelected())
+		{
+			Person p = (Person)o;
+			pb.delete(p.getId());
+			items.remove(p);
+		}
+		
+		isSelected = false;
+	}
+	
+	public Person get(String username) {
+		return pb.get(username);
 	}
 }
