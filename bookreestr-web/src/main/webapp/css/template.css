@@ -50,7 +50,7 @@ body {
   width: 100%;
 }
 
-.ui-cell-editor input[type=text] {
+.ui-cell-editor input[type=text]:not(.ui-inputfield) {
 	width: 100%;
 }
 
