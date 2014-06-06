@@ -5,10 +5,9 @@ package org.bm.ui.bean;
 
 import java.io.Serializable;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -25,7 +24,7 @@ import org.icefaces.ace.model.table.RowState;
  *
  */
 @ManagedBean
-@SessionScoped 
+@ViewScoped 
 public class SubjectBean extends GridBean<Subject> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

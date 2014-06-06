@@ -64,8 +64,7 @@
                    	</f:facet>
                    	<f:facet name="input">                   		
                        	<h:selectOneMenu id="subjectInput" value="#{book.subjectid}">
-                       		<f:selectItems value="#{subjectBean.items}" var="subject" itemLabel="#{subject.name}" itemValue="#{subject.id}" />
-                       		<ace:ajax /> 
+                       		<f:selectItems value="#{subjectBean.items}" var="subject" itemLabel="#{subject.name}" itemValue="#{subject.id}" />                       		
                        	</h:selectOneMenu>                       	                       	
                    	</f:facet>
                 </ace:cellEditor>

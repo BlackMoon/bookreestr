@@ -41,8 +41,7 @@
                    	</f:facet>
                    	<f:facet name="input">
                    		<h:selectOneMenu id="bookInput" value="#{reestr.bookid}" required="true">
-                       		<f:selectItems value="#{bookBean.items}" var="book" itemLabel="#{book}" itemValue="#{book.id}" />
-                       		<ace:ajax /> 
+                       		<f:selectItems value="#{bookBean.items}" var="book" itemLabel="#{book}" itemValue="#{book.id}" />                       		
                        	</h:selectOneMenu>
                    	</f:facet>
                 </ace:cellEditor>              	
@@ -54,8 +53,7 @@
                    	</f:facet>
                    	<f:facet name="input">
                        	<h:selectOneMenu id="readerInput" value="#{reestr.readerid}" required="true">
-                       		<f:selectItems value="#{readerBean.items}" var="reader" itemLabel="#{reader}" itemValue="#{reader.id}" />
-                       		<ace:ajax /> 
+                       		<f:selectItems value="#{readerBean.items}" var="reader" itemLabel="#{reader}" itemValue="#{reader.id}" />                       		
                        	</h:selectOneMenu>
                    	</f:facet>
                 </ace:cellEditor>              	
@@ -72,7 +70,7 @@
                    	</f:facet>            	
                 </ace:cellEditor>
               </ace:column>
-              <ace:column id="endDate" headerText="Дата окончания" sortBy="#{reestr.endDate}" filterBy="#{reestr.endDate}">
+              <ace:column id="endDate" headerText="Дата возврата" sortBy="#{reestr.endDate}" filterBy="#{reestr.endDate}">
               	<ace:cellEditor>
               		<f:facet name="output">
                       	<h:outputText id="endDateCell" value="#{reestr.endDate}">

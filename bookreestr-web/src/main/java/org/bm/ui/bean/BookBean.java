@@ -7,14 +7,12 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
 
 import org.bm.model.Book;
-import org.bm.model.Subject;
 import org.bm.service.impl.BookBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
@@ -26,7 +24,7 @@ import org.icefaces.ace.model.table.RowState;
  *
  */
 @ManagedBean
-@SessionScoped 
+@ViewScoped  
 public class BookBean extends GridBean<Book> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

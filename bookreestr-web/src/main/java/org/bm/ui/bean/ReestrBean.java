@@ -4,28 +4,19 @@
 package org.bm.ui.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.xml.ws.WebServiceRef;
 
-import org.bm.model.Person;
 import org.bm.model.Reestr;
-import org.bm.model.Subject;
-import org.bm.service.impl.PersonBean1;
 import org.bm.service.impl.ReestrBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
-import org.icefaces.ace.event.RowEditCancelEvent;
 import org.icefaces.ace.event.RowEditEvent;
-import org.icefaces.ace.event.SelectEvent;
 import org.icefaces.ace.model.table.RowState;
 
 /**
@@ -33,7 +24,7 @@ import org.icefaces.ace.model.table.RowState;
  *
  */
 @ManagedBean
-@SessionScoped 
+@ViewScoped
 public class ReestrBean extends GridBean<Reestr> implements Serializable {
 	
 
