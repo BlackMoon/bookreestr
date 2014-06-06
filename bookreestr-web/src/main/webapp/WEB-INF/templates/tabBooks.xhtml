@@ -57,10 +57,10 @@
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
-              <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}">
+              <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject.name}" filterBy="#{book.subject.name}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="subjectCell" />
+                      	<h:outputText id="subjectCell" value="#{book.subject.name}" />
                    	</f:facet>
                    	<f:facet name="input">
                        	<h:inputText id="subjectInput" />

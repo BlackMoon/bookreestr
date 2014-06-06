@@ -4,7 +4,6 @@
 package org.bm.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,9 +27,7 @@ public class Book implements Key {
 	private String author;
 	private String publish;
 	
-	/*@ManyToOne	
-	@JoinColumn(name = "subjectid")
-	private Subject subject;*/ 
+	private Subject subject; 
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -73,14 +70,16 @@ public class Book implements Key {
 	public void setPublish(String publish) {
 		this.publish = publish;
 	}
-/*
+	
+	@ManyToOne
+	@JoinColumn(name="subjectid")
 	public Subject getSubject() {
 		return subject;
 	}
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
-	}*/
+	}
 	
 	@Override
 	public String toString(){
