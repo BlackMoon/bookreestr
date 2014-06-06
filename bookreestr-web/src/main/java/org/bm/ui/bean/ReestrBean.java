@@ -38,7 +38,7 @@ public class ReestrBean extends GridBean<Reestr> implements Serializable {
 	
 
 	//@WebServiceRef(wsdlLocation = "http://localhost:8080/PersonService/Catalog?wsdl")
-    private ReestrBean1 rb;
+    private ReestrBean1 rb = new ReestrBean1();
 	
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridReestr"; 

@@ -34,10 +34,10 @@
 					selectionMode="single"
 					rowSelectListener="#{reestrBean.select}"
 					rowUnSelectListener="#{reestrBean.unselect}"> 			                  
-              <ace:column id="book" headerText="Книга" sortBy="#{reestr.book.name}" filterBy="#{reestr.book.name}">
+              <ace:column id="book" headerText="Книга" sortBy="#{reestr.book}" filterBy="#{reestr.book}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="bookCell" />
+                      	<h:outputText id="bookCell" value="#{reestr.book}" />
                    	</f:facet>
                    	<f:facet name="input">
                        	<h:inputText id="bookInput" />
@@ -47,7 +47,7 @@
               <ace:column id="reader" headerText="Читатель" sortBy="#{reestr.reader}" filterBy="#{reestr.reader}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="readerCell"/>
+                      	<h:outputText id="readerCell" value="#{reestr.reader}"/>
                    	</f:facet>
                    	<f:facet name="input">
                        	<h:inputText id="readerInput"/>

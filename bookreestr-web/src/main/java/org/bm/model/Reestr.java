@@ -28,14 +28,8 @@ public class Reestr implements Key{
 	private Date startDate;
 	private Date endDate;
 	
-	/*
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="bookid")
 	private Book book;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="readerid")
-	private Reader reader;*/
+	private Reader reader;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,21 +56,25 @@ public class Reestr implements Key{
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	/*
+	
+	@OneToOne
+	@JoinColumn(name="readerid")
 	public Reader getReader() {
 		return reader;
 	}
-	
+
 	public void setReader(Reader reader) {
 		this.reader = reader;
 	}
-	
+
+	@OneToOne
+	@JoinColumn(name="bookid")
 	public Book getBook() {
 		return book;
 	}
-	
+
 	public void setBook(Book book) {
 		this.book = book;
-	}*/
+	}
 
 }

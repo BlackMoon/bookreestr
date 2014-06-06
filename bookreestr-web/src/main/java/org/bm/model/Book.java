@@ -81,4 +81,9 @@ public class Book implements Key {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}*/
+	
+	@Override
+	public String toString(){
+		return name + ". " + author;
+	}
 }

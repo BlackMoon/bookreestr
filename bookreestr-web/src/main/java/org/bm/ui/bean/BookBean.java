@@ -4,10 +4,6 @@
 package org.bm.ui.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-
-
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,9 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.bm.model.Book;
-import org.bm.model.Subject;
 import org.bm.service.impl.BookBean1;
-import org.bm.service.impl.SubjectBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
