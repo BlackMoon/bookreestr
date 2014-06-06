@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+	
+	<ace:confirmationDialog  widgetVar="confirmation"
+                             message="Удалить запись?"
+                             header="Внимание"
+                             width="360"
+                             height="180"
+                             closable="true"
+                             position="center">
+         <h:panelGrid columns="2" styleClass="centeredPanelGrid">
+             <h:commandButton value="Да" onclick="confirmation.hide()" actionListener="#{readerBean.delete}"/>
+             <h:commandButton value="Нет" onclick="confirmation.hide()" />
+         </h:panelGrid>
+     </ace:confirmationDialog>
+	
+	<h:panelGrid columns="2" rendered="#{request.userPrincipal != null}">
+		<ace:pushButton value="Добавить" actionListener="#{readerBean.add}"/>		
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton ui-state-disabled" rendered="#{!readerBean.isSelected}"/>
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton" rendered="#{readerBean.isSelected}" onclick="confirmation.show()"/>		
+	</h:panelGrid>
+	
+	<ace:dataTable id="gridReaders" value="#{readerBean.items}" 
+					var="reader"					 
+					paginator="true" 
+					paginatorPosition="bottom"
+					reorderableColumns="true"
+					rows="20"
+					stateMap="#{readerBean.stateMap}"	
+					selectionMode="single"
+					rowSelectListener="#{readerBean.select}"
+					rowUnSelectListener="#{readerBean.unselect}">
+ 			 <ace:column id="id" headerText="ID" sortBy="#{reader.id}" filterBy="#{reader.id}" filterMatchMode="exact">
+              	<h:outputText id="idCell" value="#{reader.id}"/>
+              </ace:column>                 
+              <ace:column id="lastname" headerText="Фамилия" sortBy="#{reader.lastname}" filterBy="#{reader.lastname}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="lastnameCell" value="#{reader.lastname}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="lastnameInput" value="#{reader.lastname}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="firstname" headerText="Имя" sortBy="#{reader.firstname}" filterBy="#{reader.firstname}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="firstnameCell" value="#{reader.firstname}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="firslnameInput" value="#{reader.firstname}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="middlename" headerText="Отчество" sortBy="#{reader.middlename}" filterBy="#{reader.middlename}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="middlenameCell" value="#{reader.middlename}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="midllenameInput" value="#{reader.middlename}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>
+              <ace:column id="birthday" headerText="Дата рождения" sortBy="#{reader.birthday}" filterBy="#{reader.birthday}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="birthdayCell" value="#{reader.birthday}">
+                      		<f:convertDateTime pattern="dd.MM.yyyy"/>
+                      	</h:outputText>
+                   	</f:facet>
+                   	<f:facet name="input">
+                   		<ace:dateTimeEntry id="birthdayInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reader.birthday}" timeZone="Russia"/>                   		                       	
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>           
+              <ace:column id="misc" rendered="#{request.userPrincipal != null}">
+              	<ace:rowEditor id="editor" 
+              		rowEditListener="#{readerBean.edit}"               		
+              		cancelTitle="Отмена" 
+              		startTitle="Редактировать" 
+              		submitTitle="Сохранить"/>                   		
+              </ace:column>                             
+       	</ace:dataTable>
+
+</ui:composition>
