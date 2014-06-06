@@ -1,36 +1,87 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"	
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	
-	<h:panelGrid columns="2">		
-		<ace:pushButton value="Добавить" />
-		<ace:pushButton value="Удалить" styleClass="ice-pushbutton #{reestrBean.rowIx != -1 ? '' : 'ui-state-disabled'}" />
-	</h:panelGrid> 
+	<ace:confirmationDialog  widgetVar="confirmation"
+                             message="Удалить запись?"
+                             header="Внимание"
+                             width="360"
+                             height="180"
+                             closable="true"
+                             position="center">
+         <h:panelGrid columns="2" styleClass="centeredPanelGrid">
+             <h:commandButton value="Да" onclick="confirmation.hide()" actionListener="#{reestrBean.delete}"/>
+             <h:commandButton value="Нет" onclick="confirmation.hide()" />
+         </h:panelGrid>
+     </ace:confirmationDialog>
 	
-	<ace:dataTable id="gridReestr"
-				value="#{reestrBean.items}" 
-        		var="reestr"
-        		paginator="true" 
-        		paginatorPosition="bottom"                
-                rows="10"                                 
-                rowSelectListener="#{reestrBean.selectListener}"
-                selectionMode="single">
-        	<ace:column id="book" headerText="Книга" sortBy="#{book.id}" filterBy="#{reestr.id}" filterMatchMode="contains">
-               	<h:outputText id="bookCell" value="#{reestr.id}"/>
-            </ace:column>
-            <ace:column id="reader" headerText="Текущий читатель" sortBy="#{reestr.id}" filterBy="#{book.id}" filterMatchMode="contains">
-               	<h:outputText id="readerCell" value="#{book.id}"/>
-            </ace:column>
-            <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains">
-              	<h:outputText id="startCell" value="#{book.id}"/>
-            </ace:column>
-            <ace:column id="returndate" headerText="Дата возврата" sortBy="#{book.id}" filterBy="#{book.id}" filterMatchMode="contains" >
-              	<h:outputText id="returnCell" value="#{book.id}" />
-            </ace:column>
-    		<ace:column id="options" rendered="#{request.userPrincipal != null}">
-            	<ace:rowEditor id="editor"/>                   		
-            </ace:column>
-    </ace:dataTable>
+	<h:panelGrid columns="2" rendered="#{request.userPrincipal != null}">
+		<ace:pushButton value="Добавить" actionListener="#{reestrBean.add}"/>		
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton ui-state-disabled" rendered="#{!reestrBean.isSelected}"/>
+		<ace:pushButton value="Удалить" styleClass="ice-pushbutton" rendered="#{reestrBean.isSelected}" onclick="confirmation.show()"/>		
+	</h:panelGrid>
+	
+	<ace:dataTable id="gridreestrs" value="#{reestrBean.items}" 
+					var="reestr"					 
+					paginator="true" 
+					paginatorPosition="bottom"
+					reorderableColumns="true"
+					rows="20"
+					stateMap="#{reestrBean.stateMap}"	
+					selectionMode="single"
+					rowSelectListener="#{reestrBean.select}"
+					rowUnSelectListener="#{reestrBean.unselect}"> 			                  
+              <ace:column id="book" headerText="Книга" sortBy="#{reestr.book.name}" filterBy="#{reestr.book.name}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="nameCell" value="#{reestr.name}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="nameInput" value="#{reestr.name}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>   
+              <ace:column id="reader" headerText="Читатель" sortBy="#{reestr.reader}" filterBy="#{reestr.reader}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="authorCell" value="#{reestr.author}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="authorInput" value="#{reestr.author}"/>
+                   	</f:facet>
+                </ace:cellEditor>              	
+              </ace:column>
+              <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{reestr.subject}" filterBy="#{reestr.subject}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="startdateCell" value="#{reestr.startdate}">
+                      		<f:convertDateTime pattern="dd.MM.yyyy"/>
+                      	</h:outputText>
+                   	</f:facet>
+                   	<f:facet name="input">
+                   		<ace:dateTimeEntry id="startdateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.startdate}" timeZone="Russia"/>                   		                       	
+                   	</f:facet>            	
+                </ace:cellEditor>
+              </ace:column>
+              <ace:column id="enddate" headerText="Дата окончания" sortBy="#{reestr.publish}" filterBy="#{reestr.publish}">
+              	<f:facet name="output">
+                      	<h:outputText id="enddateCell" value="#{reestr.enddate}">
+                      		<f:convertDateTime pattern="dd.MM.yyyy"/>
+                      	</h:outputText>
+                   	</f:facet>
+                   	<f:facet name="input">
+                   		<ace:dateTimeEntry id="enddateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.enddate}" timeZone="Russia"/>                   		                       	
+                   	</f:facet>            	
+              </ace:column>
+              <ace:column id="misc" rendered="#{request.userPrincipal != null}">
+              	<ace:rowEditor id="editor" 
+              		rowEditListener="#{reestrBean.edit}"               		
+              		cancelTitle="Отмена" 
+              		startTitle="Редактировать" 
+              		submitTitle="Сохранить"/>                   		
+              </ace:column>                             
+       	</ace:dataTable>
 </ui:composition>

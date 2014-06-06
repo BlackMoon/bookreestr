@@ -56,7 +56,17 @@
                        	<h:inputText id="authorInput" value="#{book.author}"/>
                    	</f:facet>
                 </ace:cellEditor>              	
-              </ace:column>   
+              </ace:column>
+              <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}">
+              	<ace:cellEditor>
+                  	<f:facet name="output">
+                      	<h:outputText id="subjectCell" value="#{book.subject.name}"/>
+                   	</f:facet>
+                   	<f:facet name="input">
+                       	<h:inputText id="subjectInput" value="#{book.subject.name}"/>
+                   	</f:facet>
+                </ace:cellEditor>
+              </ace:column>
               <ace:column id="publish" headerText="Издательство" sortBy="#{book.publish}" filterBy="#{book.publish}">
               	<ace:cellEditor>
                   	<f:facet name="output">

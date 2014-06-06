@@ -70,4 +70,19 @@ public class Reader implements Key {
 		this.middlename = middlename;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder fio = new StringBuilder(lastname);
+		
+		if (firstname != null && firstname.length() > 0) {
+			fio.append(" " + firstname.charAt(0) + ".");
+			
+			if (middlename != null && middlename.length() > 0) {
+				fio.append(" " + middlename.charAt(0) + ".");
+			}
+		}
+		
+		return fio.toString();
+	}
+	
 }

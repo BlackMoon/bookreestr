@@ -3,14 +3,45 @@
  */
 package org.bm.model;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 /**
  * @author Black Moon
  *
  */
-public class Book {
-	private String name = "test";
-	private String author = "test";
+@Entity
+@Table(name="books")
+@NamedQuery(name = "Book.getAll", query = "SELECT b from Book b")
+public class Book implements Key {
+	private int id;	
+	private int year;
+	
+	private String name;
+	private String author;
+	private String publish;
+	
+	/*@ManyToOne	
+	@JoinColumn(name = "subjectid")
+	private Subject subject;*/ 
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -26,4 +57,28 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public String getPublish() {
+		return publish;
+	}
+
+	public void setPublish(String publish) {
+		this.publish = publish;
+	}
+/*
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}*/
 }
