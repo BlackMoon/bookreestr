@@ -4,7 +4,6 @@
 package org.bm.ui.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -28,7 +27,8 @@ import org.icefaces.ace.model.table.RowState;
 @SessionScoped 
 public class PersonBean extends GridBean<Person> implements Serializable {
 	
-	private static final long serialVersionUID = 1L;	 
+	private static final long serialVersionUID = 1L;
+	private static final String 
 	
 	PersonBean1 pb = new PersonBean1();
 	

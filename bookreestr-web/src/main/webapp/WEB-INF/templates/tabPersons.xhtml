@@ -39,7 +39,7 @@
  			 <ace:column id="id" headerText="ID" sortBy="#{person.id}" filterBy="#{person.id}" filterMatchMode="exact">
               	<h:outputText id="idCell" value="#{person.id}"/>
               </ace:column>                 
-              <ace:column id="lastname" headerText="Фамилия" sortBy="#{person.lastname}" filterBy="#{person.lastname}" filterMatchMode="contains">
+              <ace:column id="lastname" headerText="Фамилия" sortBy="#{person.lastname}" filterBy="#{person.lastname}">
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="lastnameCell" value="#{person.lastname}"/>
@@ -49,7 +49,7 @@
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
-              <ace:column id="firstname" headerText="Имя" sortBy="#{person.firstname}" filterBy="#{person.firstname}" filterMatchMode="contains">
+              <ace:column id="firstname" headerText="Имя" sortBy="#{person.firstname}" filterBy="#{person.firstname}">
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="firstnameCell" value="#{person.firstname}"/>
@@ -59,7 +59,7 @@
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
-              <ace:column id="middlename" headerText="Отчество" sortBy="#{person.middlename}" filterBy="#{person.middlename}" filterMatchMode="contains">
+              <ace:column id="middlename" headerText="Отчество" sortBy="#{person.middlename}" filterBy="#{person.middlename}">
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="middlenameCell" value="#{person.middlename}"/>
@@ -69,7 +69,7 @@
                    	</f:facet>
                 </ace:cellEditor>
               </ace:column>
-              <ace:column id="login" headerText="Логин" sortBy="#{person.login}" filterBy="#{person.login}" filterMatchMode="contains">
+              <ace:column id="login" headerText="Логин" sortBy="#{person.login}" filterBy="#{person.login}">
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="loginCell" value="#{person.login}"/>
