@@ -60,10 +60,10 @@
               <ace:column id="subject" headerText="Тематика" sortBy="#{book.subject}" filterBy="#{book.subject}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="subjectCell" value="#{book.subject.name}"/>
+                      	<h:outputText id="subjectCell" />
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="subjectInput" value="#{book.subject.name}"/>
+                       	<h:inputText id="subjectInput" />
                    	</f:facet>
                 </ace:cellEditor>
               </ace:column>

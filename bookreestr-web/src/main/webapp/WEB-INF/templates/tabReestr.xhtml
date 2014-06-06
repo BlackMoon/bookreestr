@@ -24,7 +24,7 @@
 		<ace:pushButton value="Удалить" styleClass="ice-pushbutton" rendered="#{reestrBean.isSelected}" onclick="confirmation.show()"/>		
 	</h:panelGrid>
 	
-	<ace:dataTable id="gridreestrs" value="#{reestrBean.items}" 
+	<ace:dataTable id="gridReestr" value="#{reestrBean.items}" 
 					var="reestr"					 
 					paginator="true" 
 					paginatorPosition="bottom"
@@ -37,44 +37,46 @@
               <ace:column id="book" headerText="Книга" sortBy="#{reestr.book.name}" filterBy="#{reestr.book.name}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="nameCell" value="#{reestr.name}"/>
+                      	<h:outputText id="bookCell" />
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="nameInput" value="#{reestr.name}"/>
+                       	<h:inputText id="bookInput" />
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>   
               <ace:column id="reader" headerText="Читатель" sortBy="#{reestr.reader}" filterBy="#{reestr.reader}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="authorCell" value="#{reestr.author}"/>
+                      	<h:outputText id="readerCell"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="authorInput" value="#{reestr.author}"/>
+                       	<h:inputText id="readerInput"/>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
-              <ace:column id="startdate" headerText="Дата выдачи" sortBy="#{reestr.subject}" filterBy="#{reestr.subject}">
+              <ace:column id="startDate" headerText="Дата выдачи" sortBy="#{reestr.startDate}" filterBy="#{reestr.startDate}">
               	<ace:cellEditor>
                   	<f:facet name="output">
-                      	<h:outputText id="startdateCell" value="#{reestr.startdate}">
+                      	<h:outputText id="startDateCell" value="#{reestr.startDate}">
                       		<f:convertDateTime pattern="dd.MM.yyyy"/>
                       	</h:outputText>
                    	</f:facet>
                    	<f:facet name="input">
-                   		<ace:dateTimeEntry id="startdateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.startdate}" timeZone="Russia"/>                   		                       	
+                   		<ace:dateTimeEntry id="startDateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.startDate}" timeZone="Russia"/>                   		                       	
                    	</f:facet>            	
                 </ace:cellEditor>
               </ace:column>
-              <ace:column id="enddate" headerText="Дата окончания" sortBy="#{reestr.publish}" filterBy="#{reestr.publish}">
-              	<f:facet name="output">
-                      	<h:outputText id="enddateCell" value="#{reestr.enddate}">
+              <ace:column id="endDate" headerText="Дата окончания" sortBy="#{reestr.endDate}" filterBy="#{reestr.endDate}">
+              	<ace:cellEditor>
+              		<f:facet name="output">
+                      	<h:outputText id="endDateCell" value="#{reestr.endDate}">
                       		<f:convertDateTime pattern="dd.MM.yyyy"/>
                       	</h:outputText>
                    	</f:facet>
                    	<f:facet name="input">
-                   		<ace:dateTimeEntry id="enddateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.enddate}" timeZone="Russia"/>                   		                       	
-                   	</f:facet>            	
+                   		<ace:dateTimeEntry id="endDateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.endDate}" timeZone="Russia"/>                   		                       	
+                   	</f:facet>
+              	</ace:cellEditor>            	
               </ace:column>
               <ace:column id="misc" rendered="#{request.userPrincipal != null}">
               	<ace:rowEditor id="editor" 
