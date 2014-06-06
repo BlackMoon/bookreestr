@@ -26,8 +26,7 @@ public class ReestrBean1 extends DBBean<Reestr>  {
 	}
 	
 	@Override
-	public int add(Reestr r) {
-		
+	public int add(Reestr r) {		
 		r.setBook(loadBook(r.getBookid()));
 		r.setReader(loadReader(r.getReaderid()));
 		
@@ -45,5 +44,13 @@ public class ReestrBean1 extends DBBean<Reestr>  {
 	
 	public void delete(int id) {
 		super.delete(get(id));		
-	}	
+	}
+	
+	@Override
+	public void update(Reestr r) {
+		r.setBook(loadBook(r.getBookid()));
+		r.setReader(loadReader(r.getReaderid()));
+		
+		super.update(r);
+	}
 }

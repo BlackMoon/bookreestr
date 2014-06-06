@@ -95,8 +95,5 @@ public class Reestr implements Key{
 
 	public void setReader(Reader reader) {
 		this.reader = reader;
-	}
-
-	
-
+	}	
 }

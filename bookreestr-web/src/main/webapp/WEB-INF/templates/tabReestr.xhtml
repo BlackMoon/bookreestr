@@ -40,7 +40,10 @@
                       	<h:outputText id="bookCell" value="#{reestr.book}" />
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="bookInput" />
+                   		<h:selectOneMenu id="bookInput" value="#{reestr.bookid}" required="true">
+                       		<f:selectItems value="#{bookBean.items}" var="book" itemLabel="#{book}" itemValue="#{book.id}" />
+                       		<ace:ajax /> 
+                       	</h:selectOneMenu>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>   
@@ -50,7 +53,10 @@
                       	<h:outputText id="readerCell" value="#{reestr.reader}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="readerInput"/>
+                       	<h:selectOneMenu id="readerInput" value="#{reestr.readerid}" required="true">
+                       		<f:selectItems value="#{readerBean.items}" var="reader" itemLabel="#{reader}" itemValue="#{reader.id}" />
+                       		<ace:ajax /> 
+                       	</h:selectOneMenu>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
