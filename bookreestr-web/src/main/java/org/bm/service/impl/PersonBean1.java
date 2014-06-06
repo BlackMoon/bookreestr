@@ -46,12 +46,15 @@ public class PersonBean1 extends DBBean<Person> implements PersonInterface1 {
 		return em.find(Person.class, id);
 	}
 	
-	public Person get(String login) {		
+	public Person get(String login) {
 		return (Person)em.createQuery("SELECT p FROM Person p WHERE p.login = ?").setParameter(1, login).getSingleResult();
 	}
 	
 	public int getNewId(){
-		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person p").getSingleResult();		
+		int newid = 1;
+		
+		Object o = em.createQuery("SELECT MAX(p.id) + 1 FROM Person p").getSingleResult();		
+		return (o != null) ? (int)o : newid;
 	}		
 	
 	public void delete(int id) {

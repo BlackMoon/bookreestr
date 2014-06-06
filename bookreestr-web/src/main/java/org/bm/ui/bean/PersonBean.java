@@ -28,7 +28,7 @@ import org.icefaces.ace.model.table.RowState;
 public class PersonBean extends GridBean<Person> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String 
+	private static final String SELECTOR = "form2:gridPersons"; 
 	
 	PersonBean1 pb = new PersonBean1();
 	
@@ -44,7 +44,7 @@ public class PersonBean extends GridBean<Person> implements Serializable {
 		item.setId(pb.getNewId());
 		items.add(item); 
 		
-		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent("form2:gridPersons"); 
+		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
 		DataTable table = (DataTable)u;
 		 
 		RowState itemState = stateMap.get(item); 
@@ -77,7 +77,9 @@ public class PersonBean extends GridBean<Person> implements Serializable {
 		for (Object o : stateMap.getSelected())
 		{
 			Person p = (Person)o;
-			pb.delete(p.getId());
+			if (!isNew)
+				pb.delete(p.getId());
+			
 			items.remove(p);
 		}
 		

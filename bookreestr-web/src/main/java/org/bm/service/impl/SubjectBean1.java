@@ -25,7 +25,10 @@ public class SubjectBean1 extends DBBean<Subject> {
 	
 	
 	public int getNewId(){
-		return (int)em.createQuery("SELECT MAX(s.id) + 1 FROM Subject s").getSingleResult();		
+		int newid = 1;
+		
+		Object o = em.createQuery("SELECT MAX(s.id) + 1 FROM Subject s").getSingleResult();		
+		return (o != null) ? (int)o : newid;		
 	}	
 	
 	public void delete(int id) {

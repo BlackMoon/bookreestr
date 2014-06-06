@@ -6,8 +6,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	
-	<ace:confirmationDialog id="confirmDialog"
-                             widgetVar="confirmation"
+	<ace:confirmationDialog  widgetVar="confirmation"
                              message="Удалить запись?"
                              header="Внимание"
                              width="360"
@@ -15,8 +14,8 @@
                              closable="true"
                              position="center">
          <h:panelGrid columns="2" styleClass="centeredPanelGrid">
-             <h:commandButton id="yes" value="Да" onclick="confirmation.hide()" actionListener="#{personBean.delete}"/>
-             <h:commandButton id="no" value="Нет" onclick="confirmation.hide()" />
+             <h:commandButton value="Да" onclick="confirmation.hide()" actionListener="#{personBean.delete}"/>
+             <h:commandButton value="Нет" onclick="confirmation.hide()" />
          </h:panelGrid>
      </ace:confirmationDialog>
 	

@@ -30,7 +30,8 @@ import org.icefaces.ace.model.table.RowState;
 @SessionScoped 
 public class SubjectBean extends GridBean<Subject> implements Serializable {
 	
-	private static final long serialVersionUID = 1L;	 
+	private static final long serialVersionUID = 1L;
+	private static final String SELECTOR = "form2:gridSubjects"; 
 	
 	SubjectBean1 sb = new SubjectBean1();
 	
@@ -46,7 +47,7 @@ public class SubjectBean extends GridBean<Subject> implements Serializable {
 		item.setId(sb.getNewId());
 		items.add(item); 
 		
-		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent("form2:gridSubjects"); 
+		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
 		DataTable table = (DataTable)u;
 		 
 		RowState itemState = stateMap.get(item); 
