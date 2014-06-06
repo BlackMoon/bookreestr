@@ -11,8 +11,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 
 import org.bm.model.Book;
+import org.bm.model.Subject;
 import org.bm.service.impl.BookBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
@@ -83,4 +85,12 @@ public class BookBean extends GridBean<Book> implements Serializable {
 		
 		isSelected = false;
 	}
+	
+	 public void subjectChange(ValueChangeEvent e) {
+		 Object o = e.getNewValue();
+		 if (o != null) {
+			 
+		 }
+		 return;
+	 }
 }

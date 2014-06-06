@@ -6,7 +6,7 @@
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	
 	<ace:confirmationDialog  widgetVar="confirmation"
-                             message="Удалить запись?"
+                             message="Удалить читателя?"
                              header="Внимание"
                              width="360"
                              height="180"
@@ -43,7 +43,7 @@
                       	<h:outputText id="lastnameCell" value="#{reader.lastname}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="lastnameInput" value="#{reader.lastname}"/>
+                       	<h:inputText id="lastnameInput" value="#{reader.lastname}" required="true"/>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
@@ -53,7 +53,7 @@
                       	<h:outputText id="firstnameCell" value="#{reader.firstname}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="firslnameInput" value="#{reader.firstname}"/>
+                       	<h:inputText id="firslnameInput" value="#{reader.firstname}" required="true"/>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>

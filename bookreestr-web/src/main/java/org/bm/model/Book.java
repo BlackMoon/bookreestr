@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Black Moon
@@ -22,10 +23,12 @@ import javax.persistence.Table;
 public class Book implements Key {
 	private int id;	
 	private int year;
+	private int subjectid;
 	
 	private String name;
 	private String author;
 	private String publish;
+	private String subjectname;
 	
 	private Subject subject; 
 	
@@ -69,6 +72,28 @@ public class Book implements Key {
 
 	public void setPublish(String publish) {
 		this.publish = publish;
+	}
+	
+	@Transient
+	public String getSubjectname() {
+		String name = null;		
+		if (subject!= null)
+			name = subject.getName();
+			
+		return name;
+	}
+	
+	public void setSubjectname(String subjectname) {
+		this.subjectname = subjectname;
+	}
+	
+	@Transient
+	public int getSubjectid() {
+		return subjectid;
+	}
+	
+	public void setSubjectid(int subjectid) {
+		this.subjectid = subjectid;
 	}
 	
 	@ManyToOne

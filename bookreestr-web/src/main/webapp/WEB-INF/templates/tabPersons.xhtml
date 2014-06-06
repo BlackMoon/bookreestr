@@ -7,7 +7,7 @@
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	
 	<ace:confirmationDialog  widgetVar="confirmation"
-                             message="Удалить запись?"
+                             message="Удалить пользователя?"
                              header="Внимание"
                              width="360"
                              height="180"
@@ -44,7 +44,7 @@
                       	<h:outputText id="lastnameCell" value="#{person.lastname}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="lastnameInput" value="#{person.lastname}"/>
+                       	<h:inputText id="lastnameInput" value="#{person.lastname}" required="true"/>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
@@ -54,7 +54,7 @@
                       	<h:outputText id="firstnameCell" value="#{person.firstname}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="firslnameInput" value="#{person.firstname}"/>
+                       	<h:inputText id="firslnameInput" value="#{person.firstname}" required="true"/>
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
@@ -74,7 +74,7 @@
                       	<h:outputText id="loginCell" value="#{person.login}"/>
                    	</f:facet>
                    	<f:facet name="input">
-                       	<h:inputText id="loginInput" value="#{person.login}"/>
+                       	<h:inputText id="loginInput" value="#{person.login}" required="true"/>                       	
                    	</f:facet>
                 </ace:cellEditor>
               </ace:column>           

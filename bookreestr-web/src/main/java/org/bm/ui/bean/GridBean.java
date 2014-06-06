@@ -46,6 +46,7 @@ public abstract class GridBean<T> {
 	public boolean getIsSelected() {
 		return isSelected;
 	}
+	
 	public void setIsSelected(boolean isSelected) {
 		this.isSelected = isSelected;
 	}
