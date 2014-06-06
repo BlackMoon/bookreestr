@@ -86,6 +86,7 @@ public class PersonBean extends GridBean<Person> implements Serializable {
 		isSelected = false;
 	}
 	
+	// for UserDetailsService
 	public Person get(String username) {
 		return pb.get(username);
 	}

@@ -79,7 +79,8 @@ public class SubjectBean extends GridBean<Subject> implements Serializable {
 		for (Object o : stateMap.getSelected())
 		{
 			Subject s = (Subject)o;
-			sb.delete(s.getId());
+			if (!isNew)
+				sb.delete(s.getId());
 			items.remove(s);
 		}
 		

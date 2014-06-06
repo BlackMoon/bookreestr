@@ -17,7 +17,7 @@
 			<ui:include src="WEB-INF/templates/tabSubjects.xhtml" />
 		</ace:tabPane>
 		<ace:tabPane label="Читатели">
-			
+			<ui:include src="WEB-INF/templates/tabReaders.xhtml" />
 		</ace:tabPane>
 		<ace:tabPane label="Пользователи" rendered="#{request.isUserInRole('ROLE_ADMIN')}">
 			<ui:include src="WEB-INF/templates/tabPersons.xhtml" />
