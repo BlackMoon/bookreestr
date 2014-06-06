@@ -84,13 +84,5 @@ public class BookBean extends GridBean<Book> implements Serializable {
 		}
 		
 		isSelected = false;
-	}
-	
-	 public void subjectChange(ValueChangeEvent e) {
-		 Object o = e.getNewValue();
-		 if (o != null) {
-			 
-		 }
-		 return;
-	 }
+	} 
 }

@@ -6,7 +6,6 @@ package org.bm.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Black Moon
@@ -24,7 +24,9 @@ import javax.persistence.Table;
 @NamedQuery(name = "Reestr.getAll", query = "SELECT r from Reestr r")
 public class Reestr implements Key{
 	private int id;
-	
+	private int bookid;
+	private int readerid;
+
 	private Date startDate;
 	private Date endDate;
 	
@@ -57,6 +59,34 @@ public class Reestr implements Key{
 		this.endDate = endDate;
 	}
 	
+	@Transient
+	public int getBookid() {
+		return bookid;
+	}
+
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="bookid")
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}	
+	
+	@Transient
+	public int getReaderid() {
+		return readerid;
+	}
+
+	public void setReaderid(int readerid) {
+		this.readerid = readerid;
+	}
+
 	@OneToOne
 	@JoinColumn(name="readerid")
 	public Reader getReader() {
@@ -67,14 +97,6 @@ public class Reestr implements Key{
 		this.reader = reader;
 	}
 
-	@OneToOne
-	@JoinColumn(name="bookid")
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
+	
 
 }

@@ -28,9 +28,8 @@ public class Book implements Key {
 	private String name;
 	private String author;
 	private String publish;
-	private String subjectname;
 	
-	private Subject subject; 
+	private Subject subject;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -75,27 +74,14 @@ public class Book implements Key {
 	}
 	
 	@Transient
-	public String getSubjectname() {
-		String name = null;		
-		if (subject!= null)
-			name = subject.getName();
-			
-		return name;
-	}
-	
-	public void setSubjectname(String subjectname) {
-		this.subjectname = subjectname;
-	}
-	
-	@Transient
 	public int getSubjectid() {
 		return subjectid;
 	}
-	
+
 	public void setSubjectid(int subjectid) {
 		this.subjectid = subjectid;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name="subjectid")
 	public Subject getSubject() {
@@ -104,6 +90,9 @@ public class Book implements Key {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+		
+		if (subject != null)
+			subjectid = subject.getId();
 	}
 	
 	@Override
