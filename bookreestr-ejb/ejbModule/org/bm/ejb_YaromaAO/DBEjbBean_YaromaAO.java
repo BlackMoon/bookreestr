@@ -1,19 +1,18 @@
 /**
  * 
  */
-package org.bm.service.impl1;
+package org.bm.ejb_YaromaAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import org.bm.model1.Key;
-
+import org.bm.model_YaromaAO.Key_YaromaAO;
 
 /**
  * @author Black Moon
  *
  */
-public abstract class DBBean<T extends Key> {
+public abstract class DBEjbBean_YaromaAO<T extends Key_YaromaAO> {
 	protected EntityManager em = Persistence.createEntityManagerFactory("DS").createEntityManager();
 	
 	public int add(T item) {

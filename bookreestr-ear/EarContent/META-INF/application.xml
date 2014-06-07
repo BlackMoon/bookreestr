@@ -227,5 +227,11 @@ standard deployment descriptor.
       <context-root>/bookreestr</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>bookreestr-web.war</web-uri>
+      <context-root>bookreestr-web</context-root>
+    </web>
+  </module>
   <library-directory>lib</library-directory>
 </application>

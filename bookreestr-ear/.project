@@ -5,6 +5,7 @@
 	<projects>
 		<project>BookReestrWeb</project>
 		<project>BookReestr</project>
+		<project>bookreestr-web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

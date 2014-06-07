@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.bm.model1.Subject;
-import org.bm.service.impl1.SubjectBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -30,18 +29,18 @@ public class SubjectBean_YaromaAO extends GridBean_YaromaAO<Subject> implements 
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridSubjects"; 
 	
-	SubjectBean1 sb = new SubjectBean1();
+	//SubjectBean1 sb = new SubjectBean1();
 	
 	@PostConstruct
     public void init() {
-        items = sb.getAll();
+        //items = sb.getAll();
     }
 	
 	@Override
 	public void add(){
 		
 		Subject item = new Subject();
-		item.setId(sb.getNewId());
+		//item.setId(sb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
@@ -64,11 +63,11 @@ public class SubjectBean_YaromaAO extends GridBean_YaromaAO<Subject> implements 
 		Subject s = (Subject)e.getObject();
 		
 		if (isNew) {			
-			sb.add(s);
+			//sb.add(s);
 			isNew = false;
 		}
-		else
-			sb.update(s);		
+		//else
+			//sb.update(s);		
 	}
 
 	@Override
@@ -76,8 +75,8 @@ public class SubjectBean_YaromaAO extends GridBean_YaromaAO<Subject> implements 
 		for (Object o : stateMap.getSelected())
 		{
 			Subject s = (Subject)o;
-			if (!isNew)
-				sb.delete(s.getId());
+			//if (!isNew)
+				//sb.delete(s.getId());
 			items.remove(s);
 		}
 		

@@ -18,11 +18,13 @@ import org.bm.model_YaromaAO.Subject_YaromaAO;
 @WebService
 public interface SubjectService_YaromaAO {
 	
-	List<Subject_YaromaAO> getAll();	
+	List<Subject_YaromaAO> getAll();
+	
+	int add(Subject_YaromaAO s);
+	int getNewId();
+	
 	Subject_YaromaAO get(int id);
 	
-	int add(Subject_YaromaAO r);
-	int getNewId();
 	void delete(int id);
 	void update(Subject_YaromaAO s);
 }

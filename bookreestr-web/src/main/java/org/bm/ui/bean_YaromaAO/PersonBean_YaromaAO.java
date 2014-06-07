@@ -4,6 +4,9 @@
 package org.bm.ui.bean_YaromaAO;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -11,9 +14,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.xml.rpc.ServiceException;
 
 import org.bm.model1.Person;
-import org.bm.service.impl1.PersonBean1;
+import org.bm.service.impl_YaromaAO.PersonServiceBean_YaromaAO;
+import org.bm.service.impl_YaromaAO.PersonServiceBean_YaromaAOServiceLocator;
+import org.bm.service.impl_YaromaAO.PersonYaromaAO;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -25,23 +31,30 @@ import org.icefaces.ace.model.table.RowState;
  */
 @ManagedBean(name="personBean")
 @ViewScoped
-public class PersonBean_YaromaAO extends GridBean_YaromaAO<Person> implements Serializable {
+public class PersonBean_YaromaAO extends GridBean_YaromaAO<PersonYaromaAO> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridPersons"; 
+	private static final String URL = "http://rhome:8080/PersonServiceBean_YaromaAOService/PersonServiceBean_YaromaAO";
 	
-	PersonBean1 pb = new PersonBean1();
+	PersonServiceBean_YaromaAO pb;
 	
 	@PostConstruct
     public void init() {
-        items = pb.getAll();
+		try {
+			pb = new PersonServiceBean_YaromaAOServiceLocator().getPersonServiceBean_YaromaAOPort(new java.net.URL(URL));
+			items = Arrays.asList(pb.getAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	@Override
 	public void add(){
 		
-		Person item = new Person();
-		item.setId(pb.getNewId());
+		PersonYaromaAO item = new PersonYaromaAO();
+		//item.setId(pb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
@@ -61,14 +74,21 @@ public class PersonBean_YaromaAO extends GridBean_YaromaAO<Person> implements Se
 	
 	@Override
 	public void edit(RowEditEvent e){
-		Person p = (Person)e.getObject();
+		PersonYaromaAO p = (PersonYaromaAO)e.getObject();
 		
-		if (isNew) {			
-			pb.add(p);
-			isNew = false;
+		try 
+		{	
+			if (isNew)
+			{ 
+				pb.add(p);			
+				isNew = false;
+			}
+			else
+				pb.update(p);
+		} 
+		catch (Exception ex) { 
+			ex.printStackTrace();
 		}
-		else
-			pb.update(p);		
 	}
 
 	@Override
@@ -78,7 +98,14 @@ public class PersonBean_YaromaAO extends GridBean_YaromaAO<Person> implements Se
 		{
 			Person p = (Person)o;
 			if (!isNew)
-				pb.delete(p.getId());
+				
+				try {
+					pb.delete(p.getId());
+				} 
+				catch (RemoteException ex) {
+					// TODO Auto-generated catch block
+					ex.printStackTrace();
+				}
 			
 			items.remove(p);
 		}
@@ -87,7 +114,7 @@ public class PersonBean_YaromaAO extends GridBean_YaromaAO<Person> implements Se
 	}
 	
 	// for UserDetailsService
-	public Person get(String username) {
-		return pb.get(username);
+	public PersonYaromaAO get(String username) throws RemoteException {
+		return pb.getByLogin(username);
 	}
 }

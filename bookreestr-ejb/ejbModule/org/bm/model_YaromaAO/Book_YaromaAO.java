@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Black Moon
@@ -20,6 +21,7 @@ import javax.persistence.Transient;
 @Entity(name="Book")
 @Table(name="books")
 @NamedQuery(name = "Book.getAll", query = "SELECT b from Book b")
+@XmlType(namespace="http://book.org")
 public class Book_YaromaAO implements Key_YaromaAO {
 	private int id;	
 	private int year;

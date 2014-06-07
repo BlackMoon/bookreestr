@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.bm.model1.Reestr;
-import org.bm.service.impl1.ReestrBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -27,16 +26,14 @@ import org.icefaces.ace.model.table.RowState;
 @ViewScoped
 public class ReestrBean_YaromaAO extends GridBean_YaromaAO<Reestr> implements Serializable {
 	
-
-	//@WebServiceRef(wsdlLocation = "http://localhost:8080/PersonService/Catalog?wsdl")
-    private ReestrBean1 rb = new ReestrBean1();
+    //ReestrBean1 rb = new ReestrBean1();
 	
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridReestr"; 
 	
 	@PostConstruct
     public void init() {
-        items = rb.getAll();
+        //items = rb.getAll();
     }
 	
 	@Override
@@ -65,11 +62,11 @@ public class ReestrBean_YaromaAO extends GridBean_YaromaAO<Reestr> implements Se
 		Reestr r = (Reestr)e.getObject();
 		
 		if (isNew) {			
-			rb.add(r);
+			//rb.add(r);
 			isNew = false;
 		}
-		else
-			rb.update(r);		
+		//else
+			//rb.update(r);		
 	}
 
 	@Override
@@ -77,8 +74,8 @@ public class ReestrBean_YaromaAO extends GridBean_YaromaAO<Reestr> implements Se
 		for (Object o : stateMap.getSelected())
 		{
 			Reestr r = (Reestr)o;
-			if (!isNew)
-				rb.delete(r.getId());
+			//if (!isNew)
+				//rb.delete(r.getId());
 			items.remove(r);
 		}
 		

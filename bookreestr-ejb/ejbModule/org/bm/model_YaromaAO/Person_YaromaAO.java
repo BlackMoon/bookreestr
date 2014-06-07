@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Black Moon
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Entity(name="Person")
 @Table(name="users")
 @NamedQuery(name = "Person.getAll", query = "SELECT p from Person p")
+@XmlType(namespace="http://person.org")
 public class Person_YaromaAO implements Key_YaromaAO {
 	private int id;
 	

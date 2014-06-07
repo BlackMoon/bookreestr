@@ -23,7 +23,7 @@ public interface PersonService_YaromaAO {
 	int getNewId();
 		
 	Person_YaromaAO get(int id);	
-	Person_YaromaAO get(String login);
+	Person_YaromaAO getByLogin(String login);
 		
 	void delete(int id);
 	void update(Person_YaromaAO p);

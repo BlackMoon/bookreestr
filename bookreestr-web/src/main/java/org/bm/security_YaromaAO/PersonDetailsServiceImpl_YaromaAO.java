@@ -1,9 +1,10 @@
 package org.bm.security_YaromaAO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.bm.model1.Person;
+import org.bm.service.impl_YaromaAO.PersonYaromaAO;
 import org.bm.ui.bean_YaromaAO.PersonBean_YaromaAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,12 +21,19 @@ public class PersonDetailsServiceImpl_YaromaAO implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Person p = pb.get(username);
+				
+		PersonYaromaAO p = null;
 		Collection<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
 		
-		if (p.getIsAdmin())
-			auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		try {
+			p = pb.get(username);
+			if (p.isIsAdmin())
+				auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 		return new PersonDetails_YaromaAO(username, p.getPassword(), p.getSalt(), auths);
 	}	

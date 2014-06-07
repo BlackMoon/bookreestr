@@ -1,28 +1,28 @@
 /**
  * 
  */
-package org.bm.service.impl1;
+package org.bm.ejb_YaromaAO;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.bm.model1.Person;
+import org.bm.model_YaromaAO.Person_YaromaAO;
 
 /**
  * @author Black Moon
  *
  */
-public class PersonBean1 extends DBBean<Person> {
+@LocalBean
+@Stateless
+public class PersonEjbBean_YaromaAO extends DBEjbBean_YaromaAO<Person_YaromaAO> {
 	
 	@Override
-	public int add(Person p) {        
+	public int add(Person_YaromaAO p) {        
 		
 		String passwd = p.getPassword(), salt = null;
 		
@@ -36,21 +36,21 @@ public class PersonBean1 extends DBBean<Person> {
         return super.add(p);
 	}	
 
-	public List<Person> getAll() {        
-		TypedQuery<Person> namedQuery = em.createNamedQuery("Person1.getAll", Person.class);
+	public List<Person_YaromaAO> getAll() {        
+		TypedQuery<Person_YaromaAO> namedQuery = em.createNamedQuery("Person.getAll", Person_YaromaAO.class);
         return namedQuery.getResultList();
 	}	
 	
-	public Person get(int id) {
-		return em.find(Person.class, id);
+	public Person_YaromaAO get(int id) {
+		return em.find(Person_YaromaAO.class, id);
 	}
 	
-	public Person get(String login) {		
-		return (Person)em.createQuery("SELECT p FROM Person1 p WHERE p.login = ?").setParameter(1, login).getSingleResult();
+	public Person_YaromaAO getByLogin(String login) {		
+		return (Person_YaromaAO)em.createQuery("SELECT p FROM Person p WHERE p.login = ?").setParameter(1, login).getSingleResult();
 	}
 	
 	public int getNewId(){
-		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person1 p").getSingleResult();		
+		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person p").getSingleResult();		
 	}		
 	
 	public void delete(int id) {
@@ -58,7 +58,7 @@ public class PersonBean1 extends DBBean<Person> {
 	}
 	
 	@Override
-	public void update(Person p) {
+	public void update(Person_YaromaAO p) {
 		String passwd = p.getPassword(), salt = null;
 		
 		if (passwd != null && passwd.length() > 0) {

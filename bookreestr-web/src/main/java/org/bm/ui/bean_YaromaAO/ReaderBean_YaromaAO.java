@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.bm.model1.Reader;
-import org.bm.service.impl1.ReaderBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -30,18 +29,18 @@ public class ReaderBean_YaromaAO extends GridBean_YaromaAO<Reader> implements Se
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridReaders"; 
 	
-	ReaderBean1 rb = new ReaderBean1();
+	//ReaderBean1 rb = new ReaderBean1();
 	
 	@PostConstruct
     public void init() {
-        items = rb.getAll();
+        //items = rb.getAll();
     }
 	
 	@Override
 	public void add(){
 		
 		Reader item = new Reader();
-		item.setId(rb.getNewId());
+		//item.setId(rb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
@@ -64,11 +63,11 @@ public class ReaderBean_YaromaAO extends GridBean_YaromaAO<Reader> implements Se
 		Reader r = (Reader)e.getObject();
 		
 		if (isNew) {			
-			rb.add(r);
+			//rb.add(r);
 			isNew = false;
 		}
-		else
-			rb.update(r);		
+		//else
+			//rb.update(r);		
 	}
 
 	@Override
@@ -76,8 +75,8 @@ public class ReaderBean_YaromaAO extends GridBean_YaromaAO<Reader> implements Se
 		for (Object o : stateMap.getSelected())
 		{
 			Reader r = (Reader)o;
-			if (!isNew)			
-				rb.delete(r.getId());
+			//if (!isNew)			
+				//rb.delete(r.getId());
 			items.remove(r);
 		}
 		

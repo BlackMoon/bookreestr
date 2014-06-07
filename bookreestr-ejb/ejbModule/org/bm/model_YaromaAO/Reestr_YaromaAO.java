@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Black Moon
@@ -22,6 +23,7 @@ import javax.persistence.Transient;
 @Entity(name="Reestr")
 @Table(name="reestr")
 @NamedQuery(name = "Reestr.getAll", query = "SELECT r from Reestr r")
+@XmlType(namespace="http://reestr.org")
 public class Reestr_YaromaAO implements Key_YaromaAO{
 	private int id;
 	private int bookid;

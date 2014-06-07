@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.bm.model1.Book;
-import org.bm.service.impl1.BookBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -30,18 +29,18 @@ public class BookBean_YaromaAO extends GridBean_YaromaAO<Book> implements Serial
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridBooks"; 
 	
-	BookBean1 bb = new BookBean1();
+	//BookBean1 bb = new BookBean1();
 	
 	@PostConstruct
     public void init() {
-        items = bb.getAll();
+        //items = bb.getAll();
     }
 	
 	@Override
 	public void add(){
 		
 		Book item = new Book();
-		item.setId(bb.getNewId());
+		//item.setId(bb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
@@ -64,11 +63,11 @@ public class BookBean_YaromaAO extends GridBean_YaromaAO<Book> implements Serial
 		Book b = (Book)e.getObject();
 		
 		if (isNew) {			
-			bb.add(b);
+			//bb.add(b);
 			isNew = false;
 		}
-		else
-			bb.update(b);		
+		//else
+			//bb.update(b);		
 	}
 
 	@Override
@@ -76,8 +75,8 @@ public class BookBean_YaromaAO extends GridBean_YaromaAO<Book> implements Serial
 		for (Object o : stateMap.getSelected())
 		{
 			Book b = (Book)o;
-			if (!isNew)
-				bb.delete(b.getId());
+			//if (!isNew)
+				//bb.delete(b.getId());
 			items.remove(b);
 		}
 		
