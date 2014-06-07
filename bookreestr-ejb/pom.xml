@@ -12,12 +12,46 @@
 	
 	<dependencies>
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.30</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.2.1.Final</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
+        </dependency>
+		
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+	
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
 		</dependency>
 	</dependencies>	
-
+	
+	<properties>
+	  <glassfish.home>d:\eclipse\glassfish4\glassfish</glassfish.home>
+    </properties>	
+	
 	<build>
 		<sourceDirectory>ejbModule</sourceDirectory>
 
@@ -50,8 +84,42 @@
 					<ejbVersion>3.2</ejbVersion>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+		  	  <groupId>org.glassfish.maven.plugin</groupId>
+		  	  <artifactId>maven-glassfish-plugin</artifactId>
+		  	  <version>2.1</version>
+		  	  <configuration>
+		    		<glassfishDirectory>${glassfish.home}</glassfishDirectory>
+		    		<domainDirectory>${glassfish.home}\domains</domainDirectory>
+		    		<user>admin</user>
+		    		<passwordFile>${glassfish.home}\domains\domain1\config\admin-keyfile</passwordFile>
+		    		<domain>
+			  			<name>domain1</name>
+			  			<httpPort>8080</httpPort>
+			  			<adminPort>4848</adminPort>
+		    		</domain>
+		    	<components>
+			  		<component>
+			    	<name>${project.artifactId}</name>
+			    	<artifact>${project.build.directory}/${project.build.finalName}.jar</artifact>
+			  	</component>
+		      </components>	
+		      <debug>true</debug>
+			  <terse>false</terse>
+			  <echo>true</echo>	  
+		    </configuration>
+	      </plugin>
 
 		</plugins>
 	</build>
+	
+	<pluginRepositories>        
+        <pluginRepository>
+            <id>maven.java.net</id>
+            <name>Java.net Maven2 Repository</name>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>        
+    </pluginRepositories>    
 
 </project>
