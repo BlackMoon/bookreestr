@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.ui.bean;
+package org.bm.ui.bean_YaromaAO;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import org.icefaces.ace.model.table.RowStateMap;
  * @author Black Moon
  *
  */
-public abstract class GridBean<T> {
+public abstract class GridBean_YaromaAO<T> {
 	
 	protected boolean 		isNew = false;
 	protected boolean 		isSelected = false;	

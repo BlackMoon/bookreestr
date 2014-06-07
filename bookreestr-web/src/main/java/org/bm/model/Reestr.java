@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.bm.model.Key;
+
 /**
  * @author Black Moon
  *

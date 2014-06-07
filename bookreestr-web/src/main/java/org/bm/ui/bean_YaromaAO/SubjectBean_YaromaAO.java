@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.ui.bean;
+package org.bm.ui.bean_YaromaAO;
 
 import java.io.Serializable;
 
@@ -23,9 +23,9 @@ import org.icefaces.ace.model.table.RowState;
  * @author Black Moon
  *
  */
-@ManagedBean
+@ManagedBean(name="subjectBean")
 @ViewScoped 
-public class SubjectBean extends GridBean<Subject> implements Serializable {
+public class SubjectBean_YaromaAO extends GridBean_YaromaAO<Subject> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String SELECTOR = "form2:gridSubjects"; 

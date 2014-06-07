@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.ui.bean;
+package org.bm.ui.bean_YaromaAO;
 
 import java.io.Serializable;
 
@@ -12,8 +12,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.bm.model.Reestr;
-import org.bm.service.impl.ReestrBean1;
+import org.bm.model.Book;
+import org.bm.service.impl.BookBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;
@@ -23,26 +23,25 @@ import org.icefaces.ace.model.table.RowState;
  * @author Black Moon
  *
  */
-@ManagedBean
-@ViewScoped
-public class ReestrBean extends GridBean<Reestr> implements Serializable {
-	
-
-	//@WebServiceRef(wsdlLocation = "http://localhost:8080/PersonService/Catalog?wsdl")
-    private ReestrBean1 rb = new ReestrBean1();
+@ManagedBean(name="bookBean")
+@ViewScoped  
+public class BookBean_YaromaAO extends GridBean_YaromaAO<Book> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String SELECTOR = "form2:gridReestr"; 
+	private static final String SELECTOR = "form2:gridBooks"; 
+	
+	BookBean1 bb = new BookBean1();
 	
 	@PostConstruct
     public void init() {
-        items = rb.getAll();
+        items = bb.getAll();
     }
 	
 	@Override
 	public void add(){
 		
-		Reestr item = new Reestr();		
+		Book item = new Book();
+		item.setId(bb.getNewId());
 		items.add(item); 
 		
 		UIComponent u = FacesContext.getCurrentInstance().getViewRoot().findComponent(SELECTOR); 
@@ -62,27 +61,26 @@ public class ReestrBean extends GridBean<Reestr> implements Serializable {
 	
 	@Override
 	public void edit(RowEditEvent e){
-		Reestr r = (Reestr)e.getObject();
+		Book b = (Book)e.getObject();
 		
 		if (isNew) {			
-			rb.add(r);
+			bb.add(b);
 			isNew = false;
 		}
 		else
-			rb.update(r);		
+			bb.update(b);		
 	}
 
 	@Override
 	public void delete(ActionEvent e) {
 		for (Object o : stateMap.getSelected())
 		{
-			Reestr r = (Reestr)o;
+			Book b = (Book)o;
 			if (!isNew)
-				rb.delete(r.getId());
-			items.remove(r);
+				bb.delete(b.getId());
+			items.remove(b);
 		}
 		
 		isSelected = false;
-	}
+	} 
 }
-

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.bm.model.Key;
+
 /**
  * @author Black Moon
  *

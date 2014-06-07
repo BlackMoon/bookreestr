@@ -46,7 +46,7 @@
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>   
-              <ace:column id="reader" headerText="Читатель" sortBy="#{reestr.reader}" filterBy="#{reestr.reader}">
+              <ace:column id="reader" headerText="Читатель" sortBy="#{reestr.reader}" filterBy="#{reestr.reader}" >
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="readerCell" value="#{reestr.reader}"/>
@@ -58,7 +58,7 @@
                    	</f:facet>
                 </ace:cellEditor>              	
               </ace:column>
-              <ace:column id="startDate" headerText="Дата выдачи" sortBy="#{reestr.startDate}" filterBy="#{reestr.startDate}">
+              <ace:column id="startDate" headerText="Дата выдачи" sortBy="#{reestr.startDate}" filterBy="#{reestr.startDate}" >
               	<ace:cellEditor>
                   	<f:facet name="output">
                       	<h:outputText id="startDateCell" value="#{reestr.startDate}">
@@ -70,7 +70,7 @@
                    	</f:facet>            	
                 </ace:cellEditor>
               </ace:column>
-              <ace:column id="endDate" headerText="Дата возврата" sortBy="#{reestr.endDate}" filterBy="#{reestr.endDate}">
+              <ace:column id="endDate" headerText="Дата возврата" sortBy="#{reestr.endDate}" filterBy="#{reestr.endDate}" >
               	<ace:cellEditor>
               		<f:facet name="output">
                       	<h:outputText id="endDateCell" value="#{reestr.endDate}">
@@ -78,7 +78,7 @@
                       	</h:outputText>
                    	</f:facet>
                    	<f:facet name="input">
-                   		<ace:dateTimeEntry id="endDateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.endDate}" timeZone="Russia"/>                   		                       	
+                   		<ace:dateTimeEntry id="endDateInput" renderAsPopup="true" pattern="dd.MM.yyyy" value="#{reestr.endDate}"/>                   		                       	
                    	</f:facet>
               	</ace:cellEditor>            	
               </ace:column>

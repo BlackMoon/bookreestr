@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.bm.model.Key;
+
 /**
  * @author Black Moon
  *
