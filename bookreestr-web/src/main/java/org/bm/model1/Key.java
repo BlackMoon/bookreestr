@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.model;
+package org.bm.model1;
 /**
  * @author Black Moon
  *

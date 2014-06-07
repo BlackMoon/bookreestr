@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.model;
+package org.bm.model1;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +13,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.bm.model.Key;
+import org.bm.model1.Key;
 
 /**
  * @author Black Moon
  *
  */
-@Entity
+@Entity(name="Book")
 @Table(name="books")
 @NamedQuery(name = "Book.getAll", query = "SELECT b from Book b")
 public class Book implements Key {

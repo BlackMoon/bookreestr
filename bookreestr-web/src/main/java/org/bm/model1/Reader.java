@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.model;
+package org.bm.model1;
 
 import java.util.Date;
 
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import org.bm.model.Key;
+import org.bm.model1.Key;
 
 /**
  * @author Black Moon

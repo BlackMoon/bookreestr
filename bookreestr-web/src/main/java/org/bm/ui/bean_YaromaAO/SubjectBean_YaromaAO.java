@@ -12,8 +12,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.bm.model.Subject;
-import org.bm.service.impl.SubjectBean1;
+import org.bm.model1.Subject;
+import org.bm.service.impl1.SubjectBean1;
 import org.icefaces.ace.component.celleditor.CellEditor;
 import org.icefaces.ace.component.datatable.DataTable;
 import org.icefaces.ace.event.RowEditEvent;

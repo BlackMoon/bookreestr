@@ -3,7 +3,7 @@ package org.bm.security_YaromaAO;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.bm.model.Person;
+import org.bm.model1.Person;
 import org.bm.ui.bean_YaromaAO.PersonBean_YaromaAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
