@@ -3,28 +3,20 @@
  */
 package org.bm.model1;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
-import org.bm.model1.Key;
 
 /**
  * @author Black Moon
  *
  */
-@Entity
+@Entity(name="Subject1")
 @Table(name="subjects")
-@NamedQuery(name = "Subject.getAll", query = "SELECT s from Subject s")
+@NamedQuery(name = "Subject.getAll", query = "SELECT s from Subject1 s")
 public class Subject implements Key {
 	
 	private int id;	

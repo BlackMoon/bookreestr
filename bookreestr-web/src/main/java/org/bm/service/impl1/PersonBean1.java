@@ -37,7 +37,7 @@ public class PersonBean1 extends DBBean<Person> {
 	}	
 
 	public List<Person> getAll() {        
-		TypedQuery<Person> namedQuery = em.createNamedQuery("Person.getAll", Person.class);
+		TypedQuery<Person> namedQuery = em.createNamedQuery("Person1.getAll", Person.class);
         return namedQuery.getResultList();
 	}	
 	
@@ -46,11 +46,11 @@ public class PersonBean1 extends DBBean<Person> {
 	}
 	
 	public Person get(String login) {		
-		return (Person)em.createQuery("SELECT p FROM Person p WHERE p.login = ?").setParameter(1, login).getSingleResult();
+		return (Person)em.createQuery("SELECT p FROM Person1 p WHERE p.login = ?").setParameter(1, login).getSingleResult();
 	}
 	
 	public int getNewId(){
-		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person p").getSingleResult();		
+		return (int)em.createQuery("SELECT MAX(p.id) + 1 FROM Person1 p").getSingleResult();		
 	}		
 	
 	public void delete(int id) {

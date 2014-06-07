@@ -21,9 +21,9 @@ import org.bm.model1.Key;
  * @author Black Moon
  *
  */
-@Entity
+@Entity(name="Reestr1")
 @Table(name="reestr")
-@NamedQuery(name = "Reestr.getAll", query = "SELECT r from Reestr r")
+@NamedQuery(name = "Reestr.getAll", query = "SELECT r from Reestr1 r")
 public class Reestr implements Key{
 	private int id;
 	private int bookid;

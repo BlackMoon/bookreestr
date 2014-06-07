@@ -18,11 +18,11 @@ import org.bm.model1.Reestr;
 public class ReestrBean1 extends DBBean<Reestr>  {
 	
 	private Book loadBook(int id){
-		return (Book)em.createQuery("SELECT b FROM Book b WHERE b.id = ?").setParameter(1, id).getSingleResult();
+		return (Book)em.createQuery("SELECT b FROM Book1 b WHERE b.id = ?").setParameter(1, id).getSingleResult();
 	}
 	
 	private Reader loadReader(int id){
-		return (Reader)em.createQuery("SELECT r FROM Reader r WHERE r.id = ?").setParameter(1, id).getSingleResult();
+		return (Reader)em.createQuery("SELECT r FROM Reader1 r WHERE r.id = ?").setParameter(1, id).getSingleResult();
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class ReestrBean1 extends DBBean<Reestr>  {
 	}	
 	
 	public List<Reestr> getAll() {        
-		TypedQuery<Reestr> namedQuery = em.createNamedQuery("Reestr.getAll", Reestr.class);
+		TypedQuery<Reestr> namedQuery = em.createNamedQuery("Reestr1.getAll", Reestr.class);
         return namedQuery.getResultList();
 	}	
 	

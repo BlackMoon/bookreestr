@@ -19,9 +19,9 @@ import org.bm.model1.Key;
  * @author Black Moon
  *
  */
-@Entity(name="Book")
+@Entity(name="Book1")
 @Table(name="books")
-@NamedQuery(name = "Book.getAll", query = "SELECT b from Book b")
+@NamedQuery(name = "Book.getAll", query = "SELECT b from Book1 b")
 public class Book implements Key {
 	private int id;	
 	private int year;

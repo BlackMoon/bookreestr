@@ -16,7 +16,7 @@ import org.bm.model1.Subject;
 public class SubjectBean1 extends DBBean<Subject> {
 	
 	public List<Subject> getAll() {        
-		TypedQuery<Subject> namedQuery = em.createNamedQuery("Subject.getAll", Subject.class);
+		TypedQuery<Subject> namedQuery = em.createNamedQuery("Subject1.getAll", Subject.class);
         return namedQuery.getResultList();
 	}	
 	
@@ -26,7 +26,7 @@ public class SubjectBean1 extends DBBean<Subject> {
 	
 	
 	public int getNewId(){
-		return (int)em.createQuery("SELECT MAX(s.id) + 1 FROM Subject s").getSingleResult();		
+		return (int)em.createQuery("SELECT MAX(s.id) + 1 FROM Subject1 s").getSingleResult();		
 	}	
 	
 	public void delete(int id) {

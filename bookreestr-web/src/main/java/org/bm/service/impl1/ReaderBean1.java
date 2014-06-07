@@ -16,7 +16,7 @@ import org.bm.model1.Reader;
 public class ReaderBean1 extends DBBean<Reader> {
 	
 	public List<Reader> getAll() {        
-		TypedQuery<Reader> namedQuery = em.createNamedQuery("Reader.getAll", Reader.class);
+		TypedQuery<Reader> namedQuery = em.createNamedQuery("Reader1.getAll", Reader.class);
         return namedQuery.getResultList();
 	}	
 	
@@ -27,7 +27,7 @@ public class ReaderBean1 extends DBBean<Reader> {
 	public int getNewId(){
 		int newid = 1;
 		
-		Object o = em.createQuery("SELECT MAX(r.id) + 1 FROM Reader r").getSingleResult();		
+		Object o = em.createQuery("SELECT MAX(r.id) + 1 FROM Reader1 r").getSingleResult();		
 		return (o != null) ? (int)o : newid;		
 	}	
 	

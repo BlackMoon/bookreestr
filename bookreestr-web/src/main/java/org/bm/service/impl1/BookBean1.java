@@ -17,7 +17,7 @@ import org.bm.model1.Subject;
 public class BookBean1 extends DBBean<Book>  {
 	
 	private Subject loadSubject(int id){
-		return (Subject)em.createQuery("SELECT s FROM Subject s WHERE s.id = ?").setParameter(1, id).getSingleResult();
+		return (Subject)em.createQuery("SELECT s FROM Subject1 s WHERE s.id = ?").setParameter(1, id).getSingleResult();
 	}
 	
 	@Override
@@ -28,7 +28,7 @@ public class BookBean1 extends DBBean<Book>  {
 	
 	
 	public List<Book> getAll() {        
-		TypedQuery<Book> namedQuery = em.createNamedQuery("Book.getAll", Book.class);
+		TypedQuery<Book> namedQuery = em.createNamedQuery("Book1.getAll", Book.class);
         return namedQuery.getResultList();
 	}	
 	
@@ -39,7 +39,7 @@ public class BookBean1 extends DBBean<Book>  {
 	public int getNewId(){
 		int newid = 1;
 		
-		Object o = em.createQuery("SELECT MAX(b.id) + 1 FROM Book b").getSingleResult();		
+		Object o = em.createQuery("SELECT MAX(b.id) + 1 FROM Book1 b").getSingleResult();		
 		return (o != null) ? (int)o : newid;		
 	}	
 	

@@ -16,9 +16,9 @@ import org.bm.model1.Key;
  * @author Black Moon
  *
  */
-@Entity
+@Entity(name="Person1")
 @Table(name="users")
-@NamedQuery(name = "Person.getAll", query = "SELECT p from Person p")
+@NamedQuery(name = "Person.getAll", query = "SELECT p from Person1 p")
 public class Person implements Key {
 	private int id;
 	
