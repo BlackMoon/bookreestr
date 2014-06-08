@@ -28,8 +28,7 @@ public class BookEjbBean_YaromaAO extends DBEjbBean_YaromaAO<Book_YaromaAO> {
 	public int add(Book_YaromaAO b) {
 		b.setSubject(loadSubject(b.getSubjectid()));
         return super.add(b);
-	}	
-	
+	}		
 	
 	public List<Book_YaromaAO> getAll() {        
 		TypedQuery<Book_YaromaAO> namedQuery = em.createNamedQuery("Book.getAll", Book_YaromaAO.class);

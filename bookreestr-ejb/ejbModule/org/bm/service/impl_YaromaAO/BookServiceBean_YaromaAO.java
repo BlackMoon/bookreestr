@@ -11,7 +11,6 @@ import javax.jws.WebService;
 
 import org.bm.ejb_YaromaAO.BookEjbBean_YaromaAO;
 import org.bm.model_YaromaAO.Book_YaromaAO;
-import org.bm.service_YaromaAO.BookService_YaromaAO;
 
 /**
  * @author Black Moon
@@ -19,7 +18,7 @@ import org.bm.service_YaromaAO.BookService_YaromaAO;
  */
 @Stateless
 @WebService(portName="Book")
-public class BookServiceBean_YaromaAO implements BookService_YaromaAO {
+public class BookServiceBean_YaromaAO {
 	
 	@EJB
 	BookEjbBean_YaromaAO	dao;
@@ -28,12 +27,11 @@ public class BookServiceBean_YaromaAO implements BookService_YaromaAO {
 		return dao.getAll();
 	}	
 	
-	public Book_YaromaAO get(int id) {
+	public Book_YaromaAO getBook(int id) {
 		return dao.get(id);
-	}	
+	}
 	
-	@Override
-	public int add(Book_YaromaAO b) {
+	public int addBook(Book_YaromaAO b) {
 		return dao.add(b);		
 	}
 	
@@ -41,15 +39,11 @@ public class BookServiceBean_YaromaAO implements BookService_YaromaAO {
 		return dao.getNewId();		
 	}	
 	
-	public void delete(int id) {
+	public void deleteBook(int id) {
 		dao.delete(id);		
 	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service_YaromaAO.ReaderService_YaromaAO#update(org.bm.model_YaromaAO.Reader_YaromaAO)
-	 */
-	@Override
-	public void update(Book_YaromaAO b) {
+	
+	public void updateBook(Book_YaromaAO b) {
 		dao.update(b);		
 	}	
 }

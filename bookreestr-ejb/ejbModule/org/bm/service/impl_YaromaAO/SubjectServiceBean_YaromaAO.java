@@ -10,8 +10,8 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 
 import org.bm.ejb_YaromaAO.SubjectEjbBean_YaromaAO;
+import org.bm.model_YaromaAO.Book_YaromaAO;
 import org.bm.model_YaromaAO.Subject_YaromaAO;
-import org.bm.service_YaromaAO.SubjectService_YaromaAO;
 
 /**
  * @author Black Moon
@@ -19,7 +19,7 @@ import org.bm.service_YaromaAO.SubjectService_YaromaAO;
  */
 @Stateless
 @WebService(portName="Subject")
-public class SubjectServiceBean_YaromaAO implements SubjectService_YaromaAO {
+public class SubjectServiceBean_YaromaAO {
 	
 	@EJB
 	SubjectEjbBean_YaromaAO	dao;
@@ -28,12 +28,14 @@ public class SubjectServiceBean_YaromaAO implements SubjectService_YaromaAO {
 		return dao.getAll();
 	}	
 	
-	public Subject_YaromaAO get(int id) {
+	public Subject_YaromaAO getSubject(int id) {
+		Subject_YaromaAO s = dao.get(id);
+		List<Book_YaromaAO> books = s.getBooks();
+		int sz = books.size();
 		return dao.get(id);
-	}	
+	}
 	
-	@Override
-	public int add(Subject_YaromaAO s) {
+	public int addSubject(Subject_YaromaAO s) {
 		return dao.add(s);		
 	}
 	
@@ -41,15 +43,11 @@ public class SubjectServiceBean_YaromaAO implements SubjectService_YaromaAO {
 		return dao.getNewId();		
 	}	
 	
-	public void delete(int id) {
+	public void deleteSubject(int id) {
 		dao.delete(id);		
 	}
 
-	/* (non-Javadoc)
-	 * @see org.bm.service_YaromaAO.ReaderService_YaromaAO#update(org.bm.model_YaromaAO.Reader_YaromaAO)
-	 */
-	@Override
-	public void update(Subject_YaromaAO s) {
+	public void updateSubject(Subject_YaromaAO s) {
 		dao.update(s);		
 	}	
 }

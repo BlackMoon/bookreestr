@@ -25,6 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 @NamedQuery(name = "Reestr.getAll", query = "SELECT r from Reestr r")
 @XmlType(namespace="http://reestr.org")
 public class Reestr_YaromaAO implements Key_YaromaAO{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private int bookid;
 	private int readerid;

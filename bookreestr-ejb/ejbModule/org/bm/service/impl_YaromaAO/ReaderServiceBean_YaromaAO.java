@@ -11,7 +11,6 @@ import javax.jws.WebService;
 
 import org.bm.ejb_YaromaAO.ReaderEjbBean_YaromaAO;
 import org.bm.model_YaromaAO.Reader_YaromaAO;
-import org.bm.service_YaromaAO.ReaderService_YaromaAO;
 
 /**
  * @author Black Moon
@@ -19,7 +18,7 @@ import org.bm.service_YaromaAO.ReaderService_YaromaAO;
  */
 @Stateless
 @WebService(portName="Reader")
-public class ReaderServiceBean_YaromaAO implements ReaderService_YaromaAO {
+public class ReaderServiceBean_YaromaAO {
 	
 	@EJB
 	ReaderEjbBean_YaromaAO	dao;
@@ -28,12 +27,12 @@ public class ReaderServiceBean_YaromaAO implements ReaderService_YaromaAO {
 		return dao.getAll();
 	}	
 	
-	public Reader_YaromaAO get(int id) {
+	public Reader_YaromaAO getReader(int id) {
 		return dao.get(id);
 	}	
 	
-	@Override
-	public int add(Reader_YaromaAO r) {
+	
+	public int addReader(Reader_YaromaAO r) {
 		return dao.add(r);		
 	}
 	
@@ -41,15 +40,11 @@ public class ReaderServiceBean_YaromaAO implements ReaderService_YaromaAO {
 		return dao.getNewId();		
 	}	
 	
-	public void delete(int id) {
+	public void deleteReader(int id) {
 		dao.delete(id);		
 	}
-
-	/* (non-Javadoc)
-	 * @see org.bm.service_YaromaAO.ReaderService_YaromaAO#update(org.bm.model_YaromaAO.Reader_YaromaAO)
-	 */
-	@Override
-	public void update(Reader_YaromaAO r) {
+	
+	public void updateReader(Reader_YaromaAO r) {
 		dao.update(r);		
 	}	
 }

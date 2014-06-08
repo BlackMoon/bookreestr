@@ -20,6 +20,9 @@ import javax.xml.bind.annotation.XmlType;
 @NamedQuery(name = "Person.getAll", query = "SELECT p from Person p")
 @XmlType(namespace="http://person.org")
 public class Person_YaromaAO implements Key_YaromaAO {
+
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
 	private boolean isAdmin;

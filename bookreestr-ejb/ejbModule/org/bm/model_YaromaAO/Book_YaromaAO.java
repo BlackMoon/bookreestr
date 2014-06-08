@@ -3,15 +3,19 @@
  */
 package org.bm.model_YaromaAO;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -23,6 +27,8 @@ import javax.xml.bind.annotation.XmlType;
 @NamedQuery(name = "Book.getAll", query = "SELECT b from Book b")
 @XmlType(namespace="http://book.org")
 public class Book_YaromaAO implements Key_YaromaAO {
+	private static final long serialVersionUID = 1L;
+	
 	private int id;	
 	private int year;
 	private int subjectid;
@@ -31,6 +37,7 @@ public class Book_YaromaAO implements Key_YaromaAO {
 	private String author;
 	private String publish;
 	
+	private Reestr_YaromaAO reestr;
 	private Subject_YaromaAO subject;
 	
 	@Id
@@ -83,9 +90,19 @@ public class Book_YaromaAO implements Key_YaromaAO {
 	public void setSubjectid(int subjectid) {
 		this.subjectid = subjectid;
 	}
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+	@XmlTransient
+	public Reestr_YaromaAO getReestr() {
+		return reestr;
+	}
 
-	@ManyToOne
-	@JoinColumn(name="subjectid")
+	public void setReestr(Reestr_YaromaAO reestr) {
+		this.reestr = reestr;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="subjectid", referencedColumnName="id")
 	public Subject_YaromaAO getSubject() {
 		return subject;
 	}
@@ -100,5 +117,5 @@ public class Book_YaromaAO implements Key_YaromaAO {
 	@Override
 	public String toString(){
 		return name + ". " + author;
-	}
+	}	
 }
