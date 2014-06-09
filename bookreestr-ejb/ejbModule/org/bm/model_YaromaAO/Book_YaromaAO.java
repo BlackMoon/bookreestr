@@ -3,6 +3,8 @@
  */
 package org.bm.model_YaromaAO;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -37,6 +40,7 @@ public class Book_YaromaAO implements Key_YaromaAO {
 	private String author;
 	private String publish;	
 	
+	private List<Reestr_YaromaAO> reestrs;
 	private Subject_YaromaAO subject;
 	
 	@Id
@@ -106,5 +110,15 @@ public class Book_YaromaAO implements Key_YaromaAO {
 	@Override
 	public String toString(){
 		return name + ". " + author;
-	}	
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="book", cascade = CascadeType.ALL, orphanRemoval=true)
+	@XmlTransient
+	public List<Reestr_YaromaAO> getReestrs() {
+		return reestrs;
+	}
+
+	public void setReestrs(List<Reestr_YaromaAO> reestrs) {
+		this.reestrs = reestrs;
+	}
 }
