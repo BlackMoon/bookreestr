@@ -17,13 +17,13 @@
         <version>${project.version}</version>
         <type>ejb</type>
 	  </dependency>
-	 <!-- 
+	  
 	  <dependency>
 	    <groupId>org.bm</groupId>
         <artifactId>bookreestr-web</artifactId>
         <version>${project.version}</version>
         <type>war</type>
-	  </dependency> -->
+	  </dependency> 
 	</dependencies>	
 	
 	<properties>		
@@ -54,12 +54,12 @@
                 <groupId>org.bm</groupId>
                 <artifactId>bookreestr-ejb</artifactId>   
               </ejbModule>
-              <!-- 
+               
               <webModule>
                 <groupId>org.bm</groupId>
                 <artifactId>bookreestr-web</artifactId>
                 <contextRoot>/bookreestr</contextRoot>                                 
-              </webModule>-->
+              </webModule>
             </modules>
           </configuration>
         </plugin>
