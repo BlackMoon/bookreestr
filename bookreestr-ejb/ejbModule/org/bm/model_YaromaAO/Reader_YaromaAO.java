@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
 @NamedQuery(name = "Reader.getAll", query = "SELECT r from Reader r")
 @XmlType
 public class Reader_YaromaAO implements Key_YaromaAO {
+	private static final long serialVersionUID = 1L;
 	
 	private int id;	
 	private Date birthday;

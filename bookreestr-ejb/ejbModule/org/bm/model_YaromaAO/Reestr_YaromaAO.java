@@ -81,6 +81,9 @@ public class Reestr_YaromaAO implements Key_YaromaAO{
 
 	public void setBook(Book_YaromaAO book) {
 		this.book = book;
+		
+		if (book!= null)
+			bookid = book.getId();
 	}	
 	
 	@Transient
@@ -95,10 +98,13 @@ public class Reestr_YaromaAO implements Key_YaromaAO{
 	@OneToOne
 	@JoinColumn(name="readerid")
 	public Reader_YaromaAO getReader() {
-		return reader;
+		return reader;		
 	}
 
 	public void setReader(Reader_YaromaAO reader) {
 		this.reader = reader;
+		
+		if (reader!= null)
+			readerid = reader.getId();
 	}	
 }
