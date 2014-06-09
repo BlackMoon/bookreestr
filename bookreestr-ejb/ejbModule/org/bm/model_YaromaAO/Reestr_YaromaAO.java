@@ -97,7 +97,7 @@ public class Reestr_YaromaAO implements Key_YaromaAO{
 		this.readerid = readerid;
 	}
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="readerid")
 	public Reader_YaromaAO getReader() {
 		return reader;		
