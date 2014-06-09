@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 
 import org.bm.ejb_YaromaAO.SubjectEjbBean_YaromaAO;
-import org.bm.model_YaromaAO.Book_YaromaAO;
 import org.bm.model_YaromaAO.Subject_YaromaAO;
 
 /**
@@ -28,10 +27,7 @@ public class SubjectServiceBean_YaromaAO {
 		return dao.getAll();
 	}	
 	
-	public Subject_YaromaAO getSubject(int id) {
-		Subject_YaromaAO s = dao.get(id);
-		List<Book_YaromaAO> books = s.getBooks();
-		int sz = books.size();
+	public Subject_YaromaAO getSubject(int id) {		
 		return dao.get(id);
 	}
 	
