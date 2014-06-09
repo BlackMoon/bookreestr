@@ -48,11 +48,10 @@ public class BookEjbBean_YaromaAO extends DBEjbBean_YaromaAO<Book_YaromaAO> {
 	
 	public void delete(int id) {
 		super.delete(get(id));		
-	}	
+	}
 	
-	@Override
 	public void update(Book_YaromaAO b) {
 		b.setSubject(loadSubject(b.getSubjectid()));
-		super.update(b);
+		super.update(b);		
 	}
 }

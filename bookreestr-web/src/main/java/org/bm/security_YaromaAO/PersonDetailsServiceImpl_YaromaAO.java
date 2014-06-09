@@ -4,8 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.bm.service.impl_YaromaAO.PersonYaromaAO;
-import org.bm.ui.bean_YaromaAO.PersonBean_YaromaAO;
+import org.bm.ui_YaromaAO.PersonBean_YaromaAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +21,7 @@ public class PersonDetailsServiceImpl_YaromaAO implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				
-		PersonYaromaAO p = null;
+		org.bm.service.person.PersonYaromaAO p = null;
 		Collection<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
 		
 		try {

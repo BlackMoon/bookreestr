@@ -34,7 +34,7 @@
 	  <sec:remember-me key="DoclibKey" services-ref="shaRememberMeServices" />	  
 	</sec:http>	
 	
-	<bean name="pb" class="org.bm.ui.bean_YaromaAO.PersonBean_YaromaAO" />
+	<bean name="pb" class="org.bm.ui_YaromaAO.PersonBean_YaromaAO" />
 	
 	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
       <property name="useReferer" value="true" />

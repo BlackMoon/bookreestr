@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.service.impl_YaromaAO;
+package org.bm.service_YaromaAO;
 
 import java.util.List;
 
@@ -17,26 +17,25 @@ import org.bm.model_YaromaAO.Reader_YaromaAO;
  *
  */
 @Stateless
-@WebService(portName="Reader")
+@WebService(portName="Reader", targetNamespace="http://reader.org")
 public class ReaderServiceBean_YaromaAO {
 	
 	@EJB
 	ReaderEjbBean_YaromaAO	dao;
 	
-	public List<Reader_YaromaAO> getAll() {        
+	public List<Reader_YaromaAO> getAllReaders() {        
 		return dao.getAll();
 	}	
 	
 	public Reader_YaromaAO getReader(int id) {
 		return dao.get(id);
 	}	
-	
-	
+		
 	public int addReader(Reader_YaromaAO r) {
 		return dao.add(r);		
 	}
 	
-	public int getNewId(){
+	public int getNewReaderId(){
 		return dao.getNewId();		
 	}	
 	

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.service.impl_YaromaAO;
+package org.bm.service_YaromaAO;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import org.bm.model_YaromaAO.Person_YaromaAO;
  *
  */
 @Stateless
-@WebService(portName="Person")
+@WebService(portName="Person", targetNamespace="http://person.org")
 public class PersonServiceBean_YaromaAO {
 	
 	@EJB
 	PersonEjbBean_YaromaAO	dao;
 	
-	public List<Person_YaromaAO> getAll() {        
+	public List<Person_YaromaAO> getAllPersons() {        
 		return dao.getAll();
 	}	
 	
@@ -34,7 +34,7 @@ public class PersonServiceBean_YaromaAO {
 		return dao.add(p);		
 	}
 	
-	public int getNewId(){
+	public int getNewPersonId(){
 		return dao.getNewId();		
 	}	
 	

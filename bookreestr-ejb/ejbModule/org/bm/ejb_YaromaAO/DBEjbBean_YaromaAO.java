@@ -31,6 +31,6 @@ public abstract class DBEjbBean_YaromaAO<T extends Key_YaromaAO> {
 	public void update(T item) {		
 		em.getTransaction().begin();
         em.merge(item);
-        em.getTransaction().commit();
+        em.getTransaction().commit();        
 	}		
 }

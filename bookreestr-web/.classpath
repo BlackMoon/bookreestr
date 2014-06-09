@@ -36,6 +36,5 @@
 			<attribute name="owner.project.facets" value="jst.icefaces"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/bookreestr-ejb"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

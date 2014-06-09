@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bm.ui.bean_YaromaAO;
+package org.bm.ui_YaromaAO;
 
 import java.util.List;
 

@@ -68,6 +68,6 @@ public class PersonEjbBean_YaromaAO extends DBEjbBean_YaromaAO<Person_YaromaAO> 
 		p.setPassword(passwd);
 		p.setSalt(salt);
 		
-		super.update(p);;
+		super.update(p);
 	}
 }
