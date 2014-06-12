@@ -125,7 +125,7 @@
 				CloseButtonText: 'Нет',
 				OkButtonDoneFunction: function(){ 
 					$.ajax({				
-						url: 'reestr/delete',				
+						url: '<c:url value="/reestr/delete" />',				
 						data: { id : book.id },
 						success: function(data, status){
 							(data.success) ? reestrGrid.jqGrid('delRowData', reestr.id) : $.showMessageBox({ title: "Внимание", content: data.message, type: 'alert' });					
@@ -170,7 +170,7 @@
 				dataType: 'json',
 				contentType: 'application/json',
 				type: 'post',
-				url: 'reestr/update',				
+				url: '<c:url value="/reestr/update" />',				
 				data: JSON.stringify(reestr),
 				success: function(data, status){
 					reestrWnd.unmask();
@@ -197,7 +197,7 @@
 			
 			reestrGrid.jqGrid({ 
 				datatype: 'json', 
-				url: 'reestr/getall?' + $.now(),			
+				url: '<c:url value="/reestr/getall?" />' + $.now(),			
 				height: h,
 				width: w,			
 				ignoreCase: true,
@@ -251,7 +251,7 @@
 				CloseButtonText: 'Нет',
 				OkButtonDoneFunction: function(){ 
 					$.ajax({				
-						url: 'reader/delete',				
+						url: '<c:url value="/reader/delete" />',				
 						data: { id : subj.id },
 						success: function(data, status){
 							(data.success) ? readerGrid.jqGrid('delRowData', reader.id) : $.showMessageBox({ title: "Внимание", content: data.message, type: 'alert' });					
@@ -288,7 +288,7 @@
 				dataType: 'json',
 				contentType: 'application/json',
 				type: 'post',
-				url: 'reader/update',				
+				url: '<c:url value="/reader/update" />',				
 				data: JSON.stringify(reader),
 				success: function(data, status){
 					readerWnd.unmask();
@@ -315,7 +315,7 @@
 			
 			readerGrid.jqGrid({ 
 				datatype: 'local', 
-				url: 'reader/getall?' + $.now(),			
+				url: '<c:url value="/reader/getall?" />' + $.now(),			
 				height: h,
 				width: w,			
 				ignoreCase: true,
@@ -379,7 +379,7 @@
 				CloseButtonText: 'Нет',
 				OkButtonDoneFunction: function(){ 
 					$.ajax({				
-						url: 'book/delete',				
+						url: '<c:url value="/book/delete" />',				
 						data: { id : book.id },
 						success: function(data, status){
 							(data.success) ? bookGrid.jqGrid('delRowData', book.id) : $.showMessageBox({ title: "Внимание", content: data.message, type: 'alert' });					
@@ -416,7 +416,7 @@
 				dataType: 'json',
 				contentType: 'application/json',
 				type: 'post',
-				url: 'book/update',				
+				url: '<c:url value="/book/update" />',				
 				data: JSON.stringify(book),
 				success: function(data, status){
 					bookWnd.unmask();
@@ -443,7 +443,7 @@
 			
 			bookGrid.jqGrid({ 
 				datatype: 'local', 
-				url: 'book/getall?' + $.now(),			
+				url: '<c:url value="/book/getall?" />' + $.now(),			
 				height: h,
 				width: w,			
 				ignoreCase: true,
@@ -497,7 +497,7 @@
 				CloseButtonText: 'Нет',
 				OkButtonDoneFunction: function(){ 
 					$.ajax({				
-						url: 'subject/delete',				
+						url: '<c:url value="/subject/delete" />',				
 						data: { id : subj.id },
 						success: function(data, status){
 							(data.success) ? subjGrid.jqGrid('delRowData', subj.id) : $.showMessageBox({ title: "Внимание", content: data.message, type: 'alert' });					
@@ -530,7 +530,7 @@
 				dataType: 'json',
 				contentType: 'application/json',
 				type: 'post',
-				url: 'subject/update',				
+				url: '<c:url value="/subject/update" />',				
 				data: JSON.stringify(subj),
 				success: function(data, status){
 					subjWnd.unmask();
@@ -557,7 +557,7 @@
 			
 			subjGrid.jqGrid({ 
 				datatype: 'local', 
-				url: 'subject/getall?' + $.now(),			
+				url: '<c:url value="/subject/getall?" />' + $.now(),			
 				height: h,
 				width: w,			
 				ignoreCase: true,
@@ -616,7 +616,7 @@
 				CloseButtonText: 'Нет',
 				OkButtonDoneFunction: function(){ 
 					$.ajax({				
-						url: 'person/delete',				
+						url: '<c:url value="/person/delete" />',				
 						data: { id : usr.id },
 						success: function(data, status){
 							(data.success) ? usrGrid.jqGrid('delRowData', usr.id) : $.showMessageBox({ title: "Внимание", content: data.message, type: 'alert' });					
@@ -652,7 +652,7 @@
 				dataType: 'json',
 				contentType: 'application/json',
 				type: 'post',
-				url: 'person/update',				
+				url: '<c:url value="/person/update" />',				
 				data: JSON.stringify(usr),
 				success: function(data, status){
 					usrWnd.unmask();
@@ -679,7 +679,7 @@
 			
 			usrGrid.jqGrid({ 
 				datatype: 'local', 
-				url: 'person/getall?' + $.now(),			
+				url: '<c:url value="/person/getall?" />' + $.now(),			
 				height: h,
 				width: w,			
 				ignoreCase: true,
@@ -873,7 +873,7 @@
 				icons: { primary: "ui-icon-locked" }				
 			})
 			.click(function(){				
-				window.location = '<c:choose><c:when test="${logged == 0}"><c:url value="login" /></c:when><c:otherwise><c:url value="j_spring_security_logout" /></c:otherwise></c:choose>';	
+				window.location = '<c:choose><c:when test="${logged == 0}"><c:url value="/login" /></c:when><c:otherwise><c:url value="/j_spring_security_logout" /></c:otherwise></c:choose>';	
 			});
 			
 			var $Container = $('#container');
@@ -982,8 +982,8 @@
 			});
 			reestrFrm = reestrWnd.find("#reestrfrm");
 			
-			reestrFrm.find('select[name=book]').chosen({ title: 'Книги', api: { read: "book/getbooks" }, autoReload: true, minChars: 3, onechoice: true, struct: false });
-			reestrFrm.find('select[name=reader]').chosen({ title: 'Читатели', api: { read: "reader/getreaders" }, autoReload: true, minChars: 3, onechoice: true, struct: false });
+			reestrFrm.find('select[name=book]').chosen({ title: 'Книги', api: { read: "<c:url value="/book/getbooks" />" }, autoReload: true, minChars: 3, onechoice: true, struct: false });
+			reestrFrm.find('select[name=reader]').chosen({ title: 'Читатели', api: { read: "<c:url value="/reader/getreaders" />" }, autoReload: true, minChars: 3, onechoice: true, struct: false });
 			
 			reestrFrm.find('[name=startDate]').datepicker({ dateFormat: 'dd.mm.yy' });
 			reestrFrm.find('[name=endDate]').datepicker({ dateFormat: 'dd.mm.yy' });
@@ -999,7 +999,7 @@
 				}					 	
 			});
 			bookFrm = bookWnd.find("#bookfrm");
-			bookFrm.find('select[name=subject]').chosen({ title: 'Тематики', api: { read: "subject/getsubjects" }, autoReload: true, minChars: 3, onechoice: true, struct: false });			
+			bookFrm.find('select[name=subject]').chosen({ title: 'Тематики', api: { read: "<c:url value="/subject/getsubjects" />" }, autoReload: true, minChars: 3, onechoice: true, struct: false });			
 			
 			readerWnd = $("#readerwnd").dialog({ autoOpen: false, height: 360, width: 440, modal: true,
 				buttons: {

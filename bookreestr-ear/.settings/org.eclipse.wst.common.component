@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
 	<wb-module deploy-name="BookReestrEJB">
 		<wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
-        <dependent-module archiveName="bookreestr-ejb-1.0.0.jar" deploy-path="/" handle="module:/resource/bookreestr-ejb/bookreestr-ejb">
+        <dependent-module archiveName="bookreestr-ejb-1.0.1.jar" deploy-path="/" handle="module:/resource/bookreestr-ejb/bookreestr-ejb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="bookreestr-web-1.0.0.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/bm/bookreestr-web/1.0.0/bookreestr-web-1.0.0.war">
+        <dependent-module archiveName="bookreestrweb-1.0.1.war" deploy-path="/" handle="module:/resource/bookreestr-web/bookreestr-web">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="mysql-connector-java-5.1.30.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar">
