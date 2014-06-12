@@ -7,6 +7,10 @@
 
 package org.bm.service.reestr;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
+
+@JsonIgnoreProperties({ "reader", "book" })
 public class ReestrYaromaAO  implements java.io.Serializable {
     private org.bm.service.book.BookYaromaAO book;
 
@@ -14,13 +18,16 @@ public class ReestrYaromaAO  implements java.io.Serializable {
 
     private java.util.Date endDate;
 
-    private int id;
-
+    private int id;    
+   
     private org.bm.service.reader.ReaderYaromaAO reader;
 
     private int readerid;
 
     private java.util.Date startDate;
+    
+    private String bookName;
+    private String readerFio;
 
     public ReestrYaromaAO() {
     }
@@ -60,6 +67,9 @@ public class ReestrYaromaAO  implements java.io.Serializable {
      */
     public void setBook(org.bm.service.book.BookYaromaAO book) {
         this.book = book;
+        
+        if (book != null)
+        	bookName = book.toString();
     }
 
 
@@ -140,6 +150,9 @@ public class ReestrYaromaAO  implements java.io.Serializable {
      */
     public void setReader(org.bm.service.reader.ReaderYaromaAO reader) {
         this.reader = reader;
+        
+        if (reader != null)
+        	readerFio = reader.toString();
     }
 
 
@@ -322,6 +335,23 @@ public class ReestrYaromaAO  implements java.io.Serializable {
         return 
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
-    }
+    }    
+    
+	public String getBookName() {
+		return bookName;
+	}
 
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}	
+	
+	public String getReaderFio() {
+		return readerFio;
+	}
+
+	public void setReaderFio(String readerFio) {
+		this.readerFio = readerFio;
+	}   
+    
+    
 }

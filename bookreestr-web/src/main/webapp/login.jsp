@@ -5,11 +5,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link type="text/css" rel="stylesheet" href="<c:url value="/css/login.css" />">		
-	<link type="text/css" rel="stylesheet" href="<c:url value="/css/jquery-ui.css" />">
+	<link type="text/css" rel="stylesheet" href="<c:url value="/content/login.css" />">		
+	<link type="text/css" rel="stylesheet" href="<c:url value="/content/jquery-ui.css" />">
 	<title>Аккаунт</title>
-	<script type="text/javascript" language="javascript" src="<c:url value="jquery-1.8.3.min.js" />"></script>
-	<script type="text/javascript" language="javascript" src="<c:url value="jquery-ui.min.js" />"></script>
+	<script type="text/javascript" language="javascript" src="<c:url value="/content/jquery-1.8.3.min.js" />"></script>
+	<script type="text/javascript" language="javascript" src="<c:url value="/content/jquery-ui.min.js" />"></script>
 	<script type="text/javascript" language="javascript">
 		$(function () {
 			$("#loginbtn").button({	

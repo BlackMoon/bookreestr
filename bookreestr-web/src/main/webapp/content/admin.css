@@ -1,0 +1,161 @@
+/** Add css rules here for your application. */
+
+html, body, div {	
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
+
+body {			
+	font: 13px Arial, sans-serif !important;
+	color: #222222;	
+}
+
+#addmenu {
+	width: 120px;
+}
+
+#mainbar {
+	padding: 10px 4px;	
+}
+
+#subjecttree{
+	padding: 2px
+}
+
+#loginbtn, #info {
+	float: right;
+}
+
+#info {
+	font-size: 0.8em;
+	padding: 8px;
+}
+
+.ui-accordion-header {
+	font-size: 0.9em !important;
+}
+
+.ui-accordion-content {	
+	font-size: 0.8em !important;	
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 1.1em !important;
+}
+
+#ui-accordion-accordion-header-0{
+	margin-top: 0px;
+}
+
+.ui-text{
+	border: 1px solid #AAAAAA;    
+    margin: 1px 1px 1px 0;
+    outline: 0 none;
+    padding: 4px;    
+}
+
+.ui-dialog{
+	font-size: 0.85em !important;
+}
+
+.text{
+	border: 1px solid #AAAAAA;    
+    margin: 1px 1px 1px 0;
+    outline: 0 none;
+    padding: 4px;    
+}
+
+fieldset {
+	border: 0;
+	margin-top: 10px;
+	padding: 4px 7px 6px;	
+}
+
+fieldset div {
+	position: relative;
+}
+
+fieldset label, fieldset input { 
+	display: block; 
+}
+
+textarea{	
+	height: 60px;
+	overflow: auto;
+	resize: none;	 
+}
+
+ol {
+	list-style: none outside none; 
+	margin-left: 6px; 
+	padding: 0;
+}
+
+ol li {	
+	float: left;
+	width: 50%;
+}
+
+.psw {	
+	margin-left: 0px;
+	margin-top: 12px;	
+	padding: 5px;
+}
+
+.psw legend{
+	color: #DD4B39;
+	padding-left: 2px;
+}
+
+.tabs {
+	height: 95%;
+}
+
+#addmenu, #addxmenu, #structmenu {
+	display: none;
+	font-size: 0.82em;
+	position: absolute;
+	width: 140px;
+}
+
+.ui-tabs .p05 {
+	padding: 0.5em !important;
+}
+
+.ui-tabs-panel fieldset {
+	padding: 0;
+}
+
+#deptwnd, #dicwnd, #orgwnd, #subjwnd, #usrwnd {
+	padding: 1px !important;
+}
+
+.ui-dialog input, .chzn-container, .ui-dialog textarea, .GOL5FQVBGI {
+	margin-bottom: 12px;
+}
+
+.ui-layout-center > div {
+	height: 100%;
+}
+
+.ui-loading {
+ 	background: url("images/ui-anim_basic_16x16.gif") no-repeat scroll !important;
+}
+
+.ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+    height: auto;    
+}
+
+.ui-combobox-toggle {
+    height: 26px;
+    margin-left: 1px;
+    padding: 0;
+    position: absolute !important;
+    top: 0;
+}
+
+a.ui-combobox-toggle {
+	font-size: 12px !important;
+}

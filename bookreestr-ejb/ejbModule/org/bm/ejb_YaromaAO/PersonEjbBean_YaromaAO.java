@@ -65,6 +65,13 @@ public class PersonEjbBean_YaromaAO extends DBEjbBean_YaromaAO<Person_YaromaAO> 
 			salt = RandomStringUtils.random(16, "abcdef0123456789");
 			passwd = DigestUtils.sha256Hex(passwd + "{" + salt + "}");
 		}
+		else
+		{
+			Person_YaromaAO old = getByLogin(p.getLogin());
+			passwd = old.getPassword();			
+			salt = old.getSalt();
+		}
+		
 		p.setPassword(passwd);
 		p.setSalt(salt);
 		

@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>	
-	<artifactId>bookreestr-web</artifactId>	
+	<artifactId>bookreestrweb</artifactId>	
 	<packaging>war</packaging>
 
 	<parent>
@@ -10,24 +10,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<dependencies>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
-		</dependency>
-		
-		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.2.1.Final</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
-        </dependency>
+	<dependencies>		
 		
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -48,6 +31,13 @@
 		</dependency>
 		
 		<dependency>
+  			<groupId>commons-io</groupId>
+  			<artifactId>commons-io</artifactId>
+  			<version>2.4</version>
+  		</dependency>
+		
+		
+		<dependency>
 			<groupId>javax.xml</groupId>
 			<artifactId>jaxrpc-api</artifactId>
 			<version>1.1</version>
@@ -57,31 +47,80 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces</artifactId>
-			<version>${ifaces.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces-ace</artifactId>
-			<version>${ifaces.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces-compat</artifactId>
-			<version>${ifaces.version}</version>
 		</dependency>	
 		
-		<dependency>			
-			<groupId>org.icepush</groupId>
-			<artifactId>icepush</artifactId>
-			<version>${ifaces.version}</version>
+		<dependency>
+  			<groupId>org.codehaus.jackson</groupId>
+  			<artifactId>jackson-mapper-asl</artifactId>
+  			<version>1.9.12</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+  		
+  		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>	
+  		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>	
+	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>			
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-lang</artifactId>
+					<groupId>commons-lang</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>

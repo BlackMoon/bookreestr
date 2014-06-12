@@ -54,7 +54,7 @@
                 <groupId>org.bm</groupId>
                 <artifactId>bookreestr-ejb</artifactId>   
               </ejbModule>
-               
+              
               <webModule>
                 <groupId>org.bm</groupId>
                 <artifactId>bookreestr-web</artifactId>

@@ -28,13 +28,13 @@
 	
 	<sec:http use-expressions="true">	  	    	   
 	  <sec:form-login login-page="/login" authentication-failure-url="/login?err=true" always-use-default-target="false" password-parameter="passwd" username-parameter="username" />
-	  <sec:intercept-url pattern="/favicon.ico" access="permitAll" />	  
-	  <sec:intercept-url pattern="WEB-INF/templates/**" access="permitAll" />	  	  	   
+	  <sec:intercept-url pattern="/favicon.ico" access="permitAll" />
+	  <sec:intercept-url pattern="/person/**" access="hasRole('ROLE_ADMIN')" />	  
 	  <sec:logout delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler"/>	  	 
 	  <sec:remember-me key="DoclibKey" services-ref="shaRememberMeServices" />	  
 	</sec:http>	
 	
-	<bean name="pb" class="org.bm.ui_YaromaAO.PersonBean_YaromaAO" />
+	<bean name="pb" class="org.bm.controller_YaromaAO.PersonController_YaromaAO" />
 	
 	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
       <property name="useReferer" value="true" />

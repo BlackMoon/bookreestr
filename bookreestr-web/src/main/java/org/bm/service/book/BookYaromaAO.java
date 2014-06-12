@@ -7,6 +7,9 @@
 
 package org.bm.service.book;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({ "subject" })
 public class BookYaromaAO  implements java.io.Serializable {
     private java.lang.String author;
 
@@ -21,6 +24,8 @@ public class BookYaromaAO  implements java.io.Serializable {
     private int subjectid;
 
     private int year;
+    
+    private String subjectName;
 
     public BookYaromaAO() {
     }
@@ -140,6 +145,9 @@ public class BookYaromaAO  implements java.io.Serializable {
      */
     public void setSubject(org.bm.service.subject.SubjectYaromaAO subject) {
         this.subject = subject;
+        
+        if (subject != null)
+        	subjectName = subject.getName();
     }
 
 
@@ -327,6 +335,14 @@ public class BookYaromaAO  implements java.io.Serializable {
     @Override
 	public String toString(){
 		return name + ". " + author;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 
 }
